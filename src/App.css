@@ -1,0 +1,232 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+
+
+*{
+  box-sizing: border-box;
+}
+
+:root{
+   /* ===== Colors ===== */
+   --orange-color: rgba(255,113,73,255);
+   --dark-color: rgba(48,65,72,255);
+   --darker-color:rgb(33, 43, 48); 
+   --grey-color:rgba(207, 206, 206, 0.377);
+   --lighter-grey-color:rgba(39, 38, 38, 0.096);
+   --body-color: #E4E9F7;
+   --sidebar-color: #FFF;
+   --primary-color: #695CFE;
+   --primary-color-light: #F6F5FF;
+   --toggle-color: #DDD;
+   --text-color: #707070;
+
+   /* ====== Transition ====== */
+   --tran-03: all 0.2s ease;
+   --tran-03: all 0.3s ease;
+   --tran-04: all 0.3s ease;
+   --tran-05: all 0.3s ease;
+}
+body{
+  font-family: "Cairo", sans-serif !important;
+}
+a{
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+.row{
+  margin: 0 !important;
+}
+/* Utility Classes */
+.bg-c-dark{
+  background-color: var(--dark-color) !important;
+}
+.bg-c-grey{
+  background-color: var(--grey-color) !important;
+}
+.bg-c-lighter-grey{
+  background-color: var(--lighter-grey-color) !important;
+}
+
+.nav-link{
+  color: white !important;
+  font-size: smaller !important;
+}
+.fs-6{
+  font-size: smaller !important;
+}
+.fs-7{
+  font-size: 16px !important;
+}
+.fs-8{
+  font-size: 14px !important;
+}
+.text-indigo-400{
+  color: #5c6bc0 !important;
+}
+.text-indigo-800{
+  color: #283593 !important;
+}
+/* Header */
+
+.header{
+  border-top: 1px solid rgba(0, 0, 0, 0.582);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.582);
+}
+
+/* Alarm Icon */
+.alarm-icon {
+  position: relative;
+  display: inline-block;
+  width: auto;
+  font-size: 22px !important;
+}
+
+.badge {
+  position: absolute;
+  top: -10px;
+  right: 8px;
+  background-color: var(--orange-color);
+  z-index: 1000;
+  text-align: center !important;
+  font-size: 10px !important;
+}
+
+/* Sidebar */
+.sidebar{
+  min-height: 100vh;
+  background-color: var(--dark-color);
+  width: fit-content !important;
+  overflow-y: scroll;
+
+    .mobile-nav{
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 9px;
+    margin-bottom: 10px;
+    background-color: var(--darker-color); 
+    }
+
+}
+.sidebar.mobile{
+  position: absolute;
+  display: flex !important;
+  width: 50% !important;
+  z-index: 9999;
+
+    .mobile-nav{
+      display: flex;
+    }
+}
+.sidebar.mobile.expanded{
+  width: 100% !important;
+}
+
+.nav-item{
+  padding: 20px 10px ;
+  width: 100%;
+  justify-content: flex-start;
+  position: relative;
+}
+.nav-item-container{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  .nav-item-menu{
+    display: none;
+    flex-direction: column;
+/*     justify-content: center; */
+    align-items: center;
+    position: static;
+    width: 100%;
+    bottom:  -100px;
+    right: -1rem;
+    z-index: 9999;
+    background-color: inherit;
+
+      .nav-item{
+        padding: 10px 10px;
+        display: block;
+      }
+  }
+  .nav-item-menu.show{
+    display: flex;
+  }
+
+}
+.nav-item-container.active{
+  .nav-item{
+    background-color: var(--darker-color);
+  }
+  .nav-item:hover{
+    background-color: var(--primary-color);
+  }
+  
+}
+.nav-item-container::after{
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 28px;
+  width: 0; 
+  height: 0; 
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-right: 5px solid white;
+  transition: transform 0.3s ease-in-out;
+}
+.nav-item-container.active::after{
+  transform: rotate(-90deg);
+}
+
+.nav-item > *{
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+.nav-item > i , .nav-item > svg {
+  margin-left: auto !important;
+  margin-right: auto !important;
+
+
+}
+.nav-item > span{
+  display: inline-block;
+  min-width: 100px !important;
+}
+.nav-item:hover{
+  background-color: #695CFE;
+  cursor: pointer;
+}
+
+/* Homepage */
+.stat-container{
+  background-color: white;
+  margin: 0 3rem auto auto !important;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+}
+
+.stat-table{
+  overflow-x: auto;
+  background-color: white;
+}
+
+
+/* Banner Page */
+
+.banner{
+  .banner-table{
+    overflow-x: scroll ;
+  }
+  .table{
+    tbody ,td, tfoot ,th ,thead, tr{
+      border-width: 1px !important;
+    }
+    th{
+      color: #ffffff !important;
+      background-color: var(--darker-color);
+    }
+    
+  }
+}
