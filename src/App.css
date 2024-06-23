@@ -106,7 +106,23 @@ a{
     margin-bottom: 10px;
     background-color: var(--darker-color); 
     }
+    .nav-item{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .nav-item-text {
+      display: none;
+    }
+    .nav-item-icon {
+      font-size: 25px;
+    }
 
+}
+.sidebar.toggled{
+  .nav-item-text{
+    display: inline-block;
+  }
 }
 .sidebar.mobile{
   position: absolute;
@@ -114,6 +130,11 @@ a{
   width: 50% !important;
   z-index: 9999;
 
+    .nav-item{
+      justify-content: flex-start;
+      align-items: center;
+      text-align: start;
+    }
     .mobile-nav{
       display: flex;
     }
@@ -167,8 +188,8 @@ a{
 .nav-item-container::after{
   content: "";
   position: absolute;
-  left: 8px;
-  top: 28px;
+  left: 5px;
+  top: 35px;
   width: 0; 
   height: 0; 
   border-top: 5px solid transparent;
@@ -187,13 +208,8 @@ a{
 .nav-item > i , .nav-item > svg {
   margin-left: auto !important;
   margin-right: auto !important;
-
-
 }
-.nav-item > span{
-  display: inline-block;
-  min-width: 100px !important;
-}
+
 .nav-item:hover{
   background-color: #695CFE;
   cursor: pointer;

@@ -212,7 +212,7 @@ export default function HomePage() {
                     <td>{stat.donationNo}</td>
                     <td>{stat.donationMethod}</td>
                     <td>{stat.date}</td>
-                    <td><i className="fa-solid fa-print"></i></td>
+                    <td><i className="fa-solid fa-print  text-primary"></i></td>
                   </tr>
                 )
               })}

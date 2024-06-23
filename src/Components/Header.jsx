@@ -16,7 +16,7 @@ export default function Header() {
     }
   return (
     <header className='px-0'>
-    <Navbar expand="md" className="bg-c-dark text-white px-2" dir='rtl' >
+    <Navbar expand="md" className="bg-c-dark text-white px-2 py-0" dir='rtl' >
       <Container fluid className='align-items-center'>
         <Navbar.Brand href="#home" className='text-white fs-6'>وقف الضياء بمكة المكرمة</Navbar.Brand>
 

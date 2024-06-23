@@ -36,8 +36,9 @@ export default function Sidebar() {
                 {!isIconsOn?<i className="fa-solid fa-ellipsis"></i>:<span>القائمة</span>}
             </div>
             <Link className='nav-item' to="/">
-                <IoMdHome className='fs-5'/>
-                {isIconsOn?<span>لوحة المعلومات</span>:null}
+               <span className='nav-item-icon'> <IoMdHome className=''/></span>
+               <span className='nav-item-text'> لوحة المعلومات  </span>
+             {/*    {isIconsOn?<span>لوحة المعلومات</span>:null} */}
             </Link>
             <NavItem title="الموقع الاكتروني" icon={<CgWebsite/>}/>
         </div>

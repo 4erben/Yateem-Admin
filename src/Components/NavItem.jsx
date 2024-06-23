@@ -10,20 +10,16 @@ export default function NavItem({title ,icon}) {
   return (
     <div className={`nav-item-container  ${isClicked?"active":""}`} >
         <div className='nav-item' onClick={()=>{setIsClicked(!isClicked)}}>
-            {icon}
-        {isIconsOn?
-        <span>{title}</span>
-        :null}
+           <span className='nav-item-icon'>{icon}</span> 
+        <span className='nav-item-text'>{title}</span>
         </div>
         <div className={`nav-item-menu ${isClicked?"show":""} `}>
           <Link className="nav-item" to="/banner">
+          <span className='nav-item-icon'>
           <GrArticle/>
-            {isIconsOn?
-            <span>البانر الرئيسي</span> :
-            null 
-          }
+          </span>
+          <span className='nav-item-text'>البانر الرئيسي</span> 
           </Link>
-          
         </div>
     </div>
   )
