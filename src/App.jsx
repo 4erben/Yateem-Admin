@@ -17,6 +17,7 @@ import { setUser } from './Redux/Slices/authSlice';
 import RegisterPage from './Pages/RegisterPage';
 import RemoveGiftItem from './Pages/RemoveGiftItem';
 import EditGiftItem from './Pages/EditGiftItem';
+import { getBanners } from './Redux/Slices/bannerSlice';
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
     const user = JSON.parse(localStorage.getItem("user"));
     if(user){
       dispatch(setUser(user));
+      dispatch(getBanners());
     }
   },[])
 

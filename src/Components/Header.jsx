@@ -6,6 +6,7 @@ import { switchIcons, switchMobile } from '../Redux/Slices/AppSlice';
 import { logout } from '../Redux/Slices/authSlice';
 
 export default function Header() {
+    const userName = useSelector(state=>state.auth.user)
     const dispatch = useDispatch();
     const handleSwitchIcons = ()=>{
         dispatch(switchIcons());
@@ -43,7 +44,7 @@ export default function Header() {
             </Nav.Link>
             <Dropdown>
                 <Dropdown.Toggle id='dropdown-basic'  variant="white" className='text-white'>
-                جمعان احمد زهران
+                {userName.name}
                 </Dropdown.Toggle>
                 <Dropdown.Menu className='text-end'>
                     <Dropdown.Item href="#/action-1">

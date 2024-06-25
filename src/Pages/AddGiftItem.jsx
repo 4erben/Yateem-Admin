@@ -26,6 +26,7 @@ export default function AddGiftItem() {
         console.log( "img",img);
         dispatch(createNewCard({title,totalMoney,gained,category,img,Sahm1,Sahm2,Sahm3}));
     }
+    console.log(category);
   return (
     <Container fluid>
         <Container fluid className='bg-white rounded py-3 px-4 border bordr-2'>
@@ -72,7 +73,13 @@ export default function AddGiftItem() {
                             <Form.Label className='text-nowrap'>التصنيف<span className='text-danger fw-bold'>*</span></Form.Label>
                         </Col>
                         <Col lg={8} className='d-flex jusitfy-content'>
-                            <Form.Control  type='text' name='category'  onChange={(e)=>{setCategory(e.target.value)}} required/>
+                        <select className='form-control' onChange={(e)=>{setCategory(e.target.value)}} required>
+                            <option value="مباني">مباني</option>
+                            <option value="سقيا الماء">سقيا الماء</option>
+                            <option value="كفالات">كفالات</option>
+                            <option value="الفقراء">الفقراء</option>
+                        </select>
+                            {/* <Form.Control  type='text' name='category'  onChange={(e)=>{setCategory(e.target.value)}} required/> */}
                         </Col>
                     </Form.Group>
                     {/* <Form.Group className='row my-3 align-items-center'>

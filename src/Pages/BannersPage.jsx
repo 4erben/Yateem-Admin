@@ -1,51 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Button, Col, Container, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 import { TiDocumentAdd } from "react-icons/ti";
+import { useDispatch, useSelector } from 'react-redux';
+import { getBanners } from '../Redux/Slices/bannerSlice';
 
 export default function BannersPage() {
-    const carousels = [
-        {
-            no: 1,
-            name: "مشروع التطبيق الجديد",
-            mainAddress: "الشارع الرئيسي، المدينة الكبرى",
-            subAddress: "الطابق الثاني، مكتب رقم 203",
-            modifyLink: "https://example.com/modify/1",
-            deleteLink: "https://example.com/delete/1"
-        },
-        {
-            no: 2,
-            name: "حملة الصيف الكبرى",
-            mainAddress: "ميدان الشهداء، الواحة الكبرى",
-            subAddress: "قاعة المؤتمرات الكبرى",
-            modifyLink: "https://example.com/modify/2",
-            deleteLink: "https://example.com/delete/2"
-        },
-        {
-            no: 3,
-            name: "معرض الفنون الحديثة",
-            mainAddress: "شارع الفنون، الحي الثقافي",
-            subAddress: "القاعة الرئيسية",
-            modifyLink: "https://example.com/modify/3",
-            deleteLink: "https://example.com/delete/3"
-        },
-        {
-            no: 4,
-            name: "دورة التسويق الرقمي",
-            mainAddress: "شارع المعرفة، المدينة الذكية",
-            subAddress: "مركز التعلم المستدام",
-            modifyLink: "https://example.com/modify/4",
-            deleteLink: "https://example.com/delete/4"
-        },
-        {
-            no: 5,
-            name: "مهرجان الأفلام الدولي",
-            mainAddress: "ساحة السينما، البلدة القديمة",
-            subAddress: "المسرح الرئيسي",
-            modifyLink: "https://example.com/modify/5",
-            deleteLink: "https://example.com/delete/5"
-        }
-    ];
+    const dispatch = useDispatch();
+    const banners = useSelector(state=>state.banner.banners);
+    const handleDeleteBanner = (e)=>{
+        
+    }
+    console.log(banners);
+
   return (
     <Container fluid className='banner'>
         <Container className='bg-white rounded py-4 banner-table'>
@@ -58,10 +25,10 @@ export default function BannersPage() {
                 <TiDocumentAdd className='fs-5'/>
                 <span className='mx-1'>اضافة بانر</span>
                 </Link>
-                <Link  className='btn btn-success text-white '>
+                {/* <Link  className='btn btn-success text-white '>
                 <TiDocumentAdd/>
                 <span className='mx-1'>ترتيب العناصر</span>
-                </Link>
+                </Link> */}
             </Col>
         </div>
         <Row className='w-100'>
@@ -77,16 +44,16 @@ export default function BannersPage() {
                     </tr>
                 </thead>
                 <tbody>
-                    {carousels.map((caro)=>{
+                    {banners.map((caro)=>{
                         return(
-                            <tr key={caro.no}>
-                                <td>{caro.no}</td>
-                                <td>{caro.name}</td>
-                                <td>{caro.mainAddress}</td>
-                                <td>{caro.subAddress}</td>
+                            <tr key={caro.id}>
+                                <td>{caro.id}</td>
+                                <td>{caro.title}</td>
+                                <td></td>
+                                <td></td>
                                 <td className='d-flex justify-content-around'>
                                     <Link  to="modifyCarousel" className='mx-1 btn btn-info text-white'>تعديل</Link>
-                                    <Button to="deleteCarousel" className='btn btn-danger text-white'>حذف</Button>
+                                    <Button to="deleteCarousel" className='btn btn-danger text-white' onClick={handleDeleteBanner}>حذف</Button>
                                 </td>
                             </tr>
                         )

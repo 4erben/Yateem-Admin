@@ -18,7 +18,7 @@ export default function AddCarouselItem() {
       <Container fluid className='bg-white rounded py-3 px-4 border border-2'>
       <Row className='mt-4'>
         <Form onSubmit={handleOnSubmit}>
-          <h5 >اضافة / تعديل عنصر بانر</h5>
+          <h5 >اضافة عنصر بانر</h5>
           <hr className='mt-0 mb-4'/>
           <Form.Group className='row mb-4'>
             <Col lg={2} className=''>
@@ -40,11 +40,11 @@ export default function AddCarouselItem() {
               </Form.Label>
             </Col>
           </Form.Group>
-          <Form.Group className='row mb-4'>
+          {/* <Form.Group className='row mb-4'>
             <Col lg={2} className=''><Form.Label htmlFor='imageLink'>اضافة رابط للصورة</Form.Label></Col>
-            <Col lg={10}> <Form.Control id='imageLink' type='text' placeholder='يمكنك ترك الرابط فارغ'  name='imageLink' onChange={(e)=>{setImageUrl(e.target.value)}}/></Col>
-          </Form.Group>
-          <h5 className=' mt-5'>خيارات اضافية</h5>
+            <Col lg={10}> <Form.Control id='imageLink' type='text' placeholder='يمكنك ترك الرابط فارغ'  name='imageLink' onChange={(e)=>{setImageUrl(e.target.value)}} disabled/></Col>
+          </Form.Group> */}
+         {/*  <h5 className=' mt-5'>خيارات اضافية</h5>
           <hr className='m-0'/>
           <Form.Group className='row my-4'>
             <Col lg={6}>
@@ -53,7 +53,7 @@ export default function AddCarouselItem() {
                   <Form.Label htmlFor='mainAddress'>العنوان الرئيسي</Form.Label>
                 </Col>
                 <Col lg={6} className=''>
-                  <Form.Control id='mainAddress' type='text' name='mainAddress' />
+                  <Form.Control id='mainAddress' type='text' name='mainAddress' disabled/>
                 </Col>
               </Row>
             </Col>
@@ -63,14 +63,14 @@ export default function AddCarouselItem() {
                   <Form.Label htmlFor='subAddress'>العنوان الثانوي</Form.Label>
                 </Col>
                 <Col lg={6} className=''>
-                  <Form.Control id='subAddress' type='text' name='subAddress' />
+                  <Form.Control id='subAddress' type='text' name='subAddress' disabled/>
                 </Col>
               </Row>
             </Col>
           </Form.Group>
           <Form.Group className='row'>
             <Col lg={3}><Form.Label htmlFor='bannerDescription'>وصف مختصر</Form.Label></Col>
-            <Col lg={9}><Form.Control type='text' id='bannerDescription' name='bannerDescription'/></Col>
+            <Col lg={9}><Form.Control type='text' id='bannerDescription' name='bannerDescription' disabled/></Col>
           </Form.Group>
           <Form.Group className='row my-5'>
             <Col lg={6}>
@@ -79,7 +79,7 @@ export default function AddCarouselItem() {
                   <Form.Label htmlFor='firstButtonAddress'>عنوان الزر الاول</Form.Label>
                 </Col>
                 <Col lg={6} className=''>
-                  <Form.Control id='firstButtonAddress' type='text'  name='firstButtonAddress'/>
+                  <Form.Control id='firstButtonAddress' type='text'  name='firstButtonAddress' disabled/>
                 </Col>
               </Row>
             </Col>
@@ -89,7 +89,7 @@ export default function AddCarouselItem() {
                   <Form.Label htmlFor='firstButtonLink'>رابط الزر الاول</Form.Label>
                 </Col>
                 <Col lg={6} className=''>
-                  <Form.Control id='firstButtonLink' type='text' name='firstButtonLink' />
+                  <Form.Control id='firstButtonLink' type='text' name='firstButtonLink'disabled />
                 </Col>
               </Row>
             </Col>
@@ -101,7 +101,7 @@ export default function AddCarouselItem() {
                   <Form.Label htmlFor='secondButtonAddress'>عنوان الزر الثاني</Form.Label>
                 </Col>
                 <Col lg={6} className=''>
-                  <Form.Control id='secondButtonAddress' type='text' name='secondButtonAddress'  />
+                  <Form.Control id='secondButtonAddress' type='text' name='secondButtonAddress'  disabled/>
                 </Col>
               </Row>
             </Col>
@@ -111,11 +111,11 @@ export default function AddCarouselItem() {
                   <Form.Label htmlFor='secondButtonLink'>رابط الزر الثاني</Form.Label>
                 </Col>
                 <Col lg={6} className=''>
-                  <Form.Control id='secondButtonLink' type='text' name='secondButtonLink' />
+                  <Form.Control id='secondButtonLink' type='text' name='secondButtonLink' disabled/>
                 </Col>
               </Row>
             </Col>
-          </Form.Group>
+          </Form.Group> */}
           <Form.Group className='d-flex'>
             <Button className='me-auto' variant='success' type='submit'>حفظ</Button>
           </Form.Group>

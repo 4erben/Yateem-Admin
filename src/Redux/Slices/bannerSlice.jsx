@@ -1,33 +1,61 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const createNewBanner = createAsyncThunk(
-    "banner/createProduct",
-    async(args)=>{
-      /*   const {token} = JSON.parse(localStorage.getItem("user")); */
-      console.log(args);
+    "banner/createBanner",
+    async(args,{rejectWithValue})=>{
+        const token = JSON.parse(localStorage.getItem("token"));
+        console.log(token);
+        const { ...formData } = args;
+        const data = new FormData();
+        data.append("token",token);
+        for (const key in args) {
+            if (args.hasOwnProperty(key)) {
+            data.append(key, formData[key]);
+            }
+        }
         try{
-            const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/logos`,{
+            const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/api/logos`,{
                 method:"POST",
                 headers:{
                     "Content-Type":"application/json",
                 },
-                body:JSON.stringify(args)
+                body:data
             });
+            if (!res.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const card = await res.json();
+            return card;
+        }catch(err){
+            console.log(err);
+            return rejectWithValue(err.message)
+        } 
+    }
+);
+export const getBanners = createAsyncThunk(
+    "banner/getBanners",
+    async(args)=>{
+        const token = JSON.parse(localStorage.getItem("token"));
+      console.log(args);
+        try{
+            const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/api/logos?token=${token}`);
+            if(!res.ok){
+                throw new Error("Error Occured")
+            }
             const card = await res.json();
             return card;
         }catch(err){
             console.log(err);
             return err.message;
         }
-        
     }
 );
 
 export const editBanner = createAsyncThunk(
-    "banner/removeProduct",
+    "banner/removeBanner",
     async(args)=>{
         try{
-            const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/card`,{
+            const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/api/logos`,{
                 method:"DELETE",
                 headers:{
                     "Content-Type":"application/json",
@@ -69,7 +97,7 @@ export const removeBanner = createAsyncThunk(
 const bannerSlice = createSlice({
    name: "banner",
     initialState:{
-        product: null,
+        banners: [],
         err:null
     },
     reducers:{},
@@ -79,19 +107,28 @@ const bannerSlice = createSlice({
 
         })
         .addCase(createNewBanner.fulfilled,(state,action)=>{
-            state.product = action.payload;
+            state.banners = state.banners.push(action.payload);
         })
         .addCase(createNewBanner.rejected,(state,action)=>{
+            state.err = action.payload.message;
+        })
+        .addCase(removeBanner.pending,(state,action)=>{
 
         })
-        .addCase(removeCard.pending,(state,action)=>{
-
-        })
-        .addCase(removeCard.fulfilled,(state,action)=>{
+        .addCase(removeBanner.fulfilled,(state,action)=>{
             state.product = action.payload;
         })
-        .addCase(removeCard.rejected,(state,action)=>{
+        .addCase(removeBanner.rejected,(state,action)=>{
 
+        })
+        .addCase(getBanners.pending,(state,action)=>{
+
+        })
+        .addCase(getBanners.fulfilled,(state,action)=>{
+            state.banners = action.payload;
+        })
+        .addCase(getBanners.rejected,(state,action)=>{
+            state.err = action.payload.message;
         })
     }
 })
