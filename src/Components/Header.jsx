@@ -3,6 +3,7 @@ import { Container, Dropdown, Nav, NavDropdown, Navbar } from 'react-bootstrap'
 import AlarmIcon from './AlarmIcon'
 import { useDispatch, useSelector } from 'react-redux'
 import { switchIcons, switchMobile } from '../Redux/Slices/AppSlice';
+import { logout } from '../Redux/Slices/authSlice';
 
 export default function Header() {
     const dispatch = useDispatch();
@@ -13,6 +14,9 @@ export default function Header() {
       dispatch(switchIcons());
       dispatch(switchMobile());
 
+    }
+    const handleLogOut = ()=>{
+      dispatch(logout())
     }
   return (
     <header className='px-0'>
@@ -45,7 +49,7 @@ export default function Header() {
                     <Dropdown.Item href="#/action-1">
                     تغيير كلمة المرور
                     </Dropdown.Item>
-                    <Dropdown.Item href="#/action-2">
+                    <Dropdown.Item href="#/action-2" onClick={handleLogOut}>
                     تسجيل الخروج
                     </Dropdown.Item>
             </Dropdown.Menu>

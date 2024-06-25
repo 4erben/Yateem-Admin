@@ -1,12 +1,12 @@
 import {configureStore } from "@reduxjs/toolkit";
-import cartReducer from "./Slices/CartSlice";
-import AdminSlice from "./Slices/AdminSlice";
+import cardSlice from "./Slices/cardSlice";
 import AppSlice from "./Slices/AppSlice";
+import authSlice from "./Slices/authSlice";
 const store = configureStore({
     reducer:{
-        cart : cartReducer,
-        admin: AdminSlice,
-        app: AppSlice
+        card: cardSlice,
+        app: AppSlice,
+        auth: authSlice
     }
 })
 

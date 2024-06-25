@@ -1,10 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import { IoMdInformationCircle } from "react-icons/io";
+import { useDispatch } from 'react-redux';
+import { createNewBanner } from '../Redux/Slices/bannerSlice';
 
 export default function AddCarouselItem() {
+  const dispatch = useDispatch();
+  const [title , setTitle] = useState("");
+  const [image , setImage] = useState(null);
+  const [imageUrl , setImageUrl] = useState("");
   const handleOnSubmit = (e)=>{
       e.preventDefault();
+      dispatch(createNewBanner(title,image,imageUrl));
   }
   return (
     <Container fluid className=''>
@@ -18,7 +25,7 @@ export default function AddCarouselItem() {
               <Form.Label htmlFor='bannerName'>اسم البانر</Form.Label>
             </Col>
             <Col lg={10}> 
-              <Form.Control id='bannerName' type='text' placeholder='ادخل اسم البانر'  name='bannerName' required/>
+              <Form.Control id='bannerName' type='text' placeholder='ادخل اسم البانر'  name='bannerName' onChange={(e)=>{setTitle(e.target.value)}} required/>
             </Col>
           </Form.Group>
           <Form.Group className='row mb-4'>
@@ -26,7 +33,7 @@ export default function AddCarouselItem() {
               <Form.Label>الصورة</Form.Label>
             </Col>
             <Col lg={10}>
-              <Form.Control id='bannerImage' type='file'  name='bannerImage' required />
+              <Form.Control id='bannerImage' type='file'  name='bannerImage' onChange={(e)=>{setImage(e.target.files[0])}} required />
               <Form.Label htmlFor='bannerImage' className='w-100 text-center mt-1 text-danger ' >
                 <IoMdInformationCircle className='mx-1 fs-5'/>
                 <small className='fw-light'>صورة نموذج العرض بمقاس 1600x578 px ويمكنكم استخدام مقاسات أخرى بعرض 1600 px وتوحيد أطوال البنرات</small>
@@ -35,7 +42,7 @@ export default function AddCarouselItem() {
           </Form.Group>
           <Form.Group className='row mb-4'>
             <Col lg={2} className=''><Form.Label htmlFor='imageLink'>اضافة رابط للصورة</Form.Label></Col>
-            <Col lg={10}> <Form.Control id='imageLink' type='text' placeholder='يمكنك ترك الرابط فارغ'  name='imageLink'/></Col>
+            <Col lg={10}> <Form.Control id='imageLink' type='text' placeholder='يمكنك ترك الرابط فارغ'  name='imageLink' onChange={(e)=>{setImageUrl(e.target.value)}}/></Col>
           </Form.Group>
           <h5 className=' mt-5'>خيارات اضافية</h5>
           <hr className='m-0'/>

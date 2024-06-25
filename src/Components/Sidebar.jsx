@@ -6,12 +6,41 @@ import { IoMdHome } from "react-icons/io";
 import { FaArrowRight } from "react-icons/fa6";
 import { FaExpandArrowsAlt } from "react-icons/fa";
 import { LuShrink } from "react-icons/lu";
+import { GrArticle } from "react-icons/gr";
+import { CiGift } from "react-icons/ci";
+import { HiDocumentAdd } from "react-icons/hi";
+import { HiDocumentRemove } from "react-icons/hi";
+import { MdEditDocument } from "react-icons/md";
 
 import NavItem from './NavItem';
 import { switchIcons, switchMobile } from '../Redux/Slices/AppSlice';
 import { Link } from 'react-router-dom';
 
 export default function Sidebar() {
+    const bannersMenu = [
+        {
+            title: "البانر الرئيسي",
+            icon: <GrArticle/>,
+            link: "/banner"
+        }
+    ]
+    const giftsMenu = [
+        {
+            title: "اضافة اهداء",
+            icon: <HiDocumentAdd />,
+            link : "/carts/add"
+        },
+        {
+            title: "حذف اهداء ",
+            icon :  <HiDocumentRemove />,
+            link : "/carts/remove"
+        },
+        {
+            title: "تعديل اهداء",
+            icon :  <MdEditDocument />,
+            link : "/carts/edit"
+        }
+    ]
     const isIconsOn = useSelector(state=>state.app.isIconOn);
     const isMobileOn = useSelector(state=>state.app.isMobileOn);
     const dispatch = useDispatch();
@@ -38,9 +67,9 @@ export default function Sidebar() {
             <Link className='nav-item' to="/">
                <span className='nav-item-icon'> <IoMdHome className=''/></span>
                <span className='nav-item-text'> لوحة المعلومات  </span>
-             {/*    {isIconsOn?<span>لوحة المعلومات</span>:null} */}
             </Link>
-            <NavItem title="الموقع الاكتروني" icon={<CgWebsite/>}/>
+            <NavItem title="الموقع الاكتروني" titleIcon={<CgWebsite/>} itemsMenu ={bannersMenu}/>
+            <NavItem title="الاهداءات" titleIcon={<CiGift/>} itemsMenu ={giftsMenu}/>
         </div>
     </Container>
     </Col>

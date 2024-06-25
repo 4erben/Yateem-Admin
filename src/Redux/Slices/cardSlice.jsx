@@ -2,32 +2,42 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const createNewCard = createAsyncThunk(
     "admin/createProduct",
-    async(args)=>{
-      /*   const {token} = JSON.parse(localStorage.getItem("user")); */
-      console.log(args);
+    async(args ,{rejectWithValue})=>{
+        const token = JSON.parse(localStorage.getItem("token"));
+        const { ...formData } = args;
+        const data = new FormData();
+        data.append("token",token);
+        for (const key in args) {
+            if (args.hasOwnProperty(key)) {
+            data.append(key, formData[key]);
+            }
+        }
         try{
-            const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/card`,{
+            const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/api/projects`,{
                 method:"POST",
-                headers:{
-                    "Content-Type":"application/json",
-                },
-                body:JSON.stringify(args)
+                body: data
             });
+            console.log(res);
+            if (!res.ok) {
+                throw new Error('Network response was not ok');
+            }
             const card = await res.json();
             return card;
         }catch(err){
             console.log(err);
-            return err.message;
+            return rejectWithValue(err.message);
         }
         
     }
 );
 export const editCard = createAsyncThunk(
-    "admin/removeProduct",
+    "admin/editCard",
     async(args)=>{
+        const token = JSON.parse(localStorage.getItem("token"));
+        const id = args.cardId;
         try{
-            const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/card`,{
-                method:"DELETE",
+            const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/api/projects`,{
+                method:"PUT",
                 headers:{
                     "Content-Type":"application/json",
                    /*  "Authorization": `Bearer ${token}` */
@@ -46,9 +56,11 @@ export const editCard = createAsyncThunk(
 export const removeCard = createAsyncThunk(
     "admin/removeProduct",
     async(args)=>{
-       /*  const {token} = JSON.parse(localStorage.getItem("user")); */
+        const token = JSON.parse(localStorage.getItem("token"));
+        const {cardId, title} = args;
+        console.log("args:" , args);
         try{
-            const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/card`,{
+            const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/api/projects/${id}?title=${title}&token=${token}`,{
                 method:"DELETE",
                 headers:{
                     "Content-Type":"application/json",
@@ -65,8 +77,8 @@ export const removeCard = createAsyncThunk(
     }
 )
 
-const adminSlice = createSlice({
-   name: "admin",
+const cardSlice = createSlice({
+   name: "card",
     initialState:{
         product: null,
         err:null
@@ -95,4 +107,4 @@ const adminSlice = createSlice({
     }
 })
 
-export default adminSlice.reducer;
+export default cardSlice.reducer;
