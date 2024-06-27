@@ -4,7 +4,6 @@ export const createNewBanner = createAsyncThunk(
     "banner/createBanner",
     async(args,{rejectWithValue})=>{
         const token = JSON.parse(localStorage.getItem("token"));
-        console.log(token);
         const { ...formData } = args;
         const data = new FormData();
         data.append("token",token);
@@ -17,7 +16,7 @@ export const createNewBanner = createAsyncThunk(
             const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/api/logos`,{
                 method:"POST",
                 headers:{
-                    "Content-Type":"application/json",
+                   /*  "Authorization": `Bearer ${token}` */
                 },
                 body:data
             });
@@ -53,43 +52,56 @@ export const getBanners = createAsyncThunk(
 
 export const editBanner = createAsyncThunk(
     "banner/removeBanner",
-    async(args)=>{
+    async(args,{rejectWithValue})=>{
+        const token = JSON.parse(localStorage.getItem("token"));
+        const { ...formData } = args;
+        const data = new FormData();
+       /*  data.append("token",token); */
+        for (const key in args) {
+            if (args.hasOwnProperty(key)) {
+            data.append(key, formData[key]);
+            }
+        }
         try{
             const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/api/logos`,{
-                method:"DELETE",
+                method:"PUT",
                 headers:{
-                    "Content-Type":"application/json",
                    /*  "Authorization": `Bearer ${token}` */
                 },
-                body:JSON.stringify(args)
+                body:data
             });
+            if(!res.ok){
+                throw new Error(res.status);
+            }
                 const response = await res.json();
                 return response;
         }catch(err){
         console.log(err)
-        return err.message
+        return rejectWithValue(err.message);
             }
     }
 );
 
 export const removeBanner = createAsyncThunk(
     "banner/removeProduct",
-    async(args)=>{
-       /*  const {token} = JSON.parse(localStorage.getItem("user")); */
+    async(args,{rejectWithValue})=>{
+        const {token} = JSON.parse(localStorage.getItem("token"));
+        const {bannerId} = args;
+        console.log(bannerId);
         try{
-            const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/card`,{
+            const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/api/logos`,{
                 method:"DELETE",
                 headers:{
                     "Content-Type":"application/json",
-                   /*  "Authorization": `Bearer ${token}` */
+                    "Authorization": `Bearer ${token}`
                 },
-                body:JSON.stringify(args)
+                body:JSON.stringify(bannerId)
             });
                 const response = await res.json();
                 return response;
         }catch(err){
         console.log(err)
-        return err.message
+        return rejectWithValue(err.message);
             }
     }
 )
@@ -98,28 +110,43 @@ const bannerSlice = createSlice({
    name: "banner",
     initialState:{
         banners: [],
-        err:null
+        err:null,
+        status :"idle",
+        isLoading:false
     },
     reducers:{},
     extraReducers(builder){
         builder
         .addCase(createNewBanner.pending,(state,action)=>{
-
+            state.isLoading = true;
         })
         .addCase(createNewBanner.fulfilled,(state,action)=>{
             state.banners = state.banners.push(action.payload);
+            state.isLoading = false
         })
         .addCase(createNewBanner.rejected,(state,action)=>{
             state.err = action.payload.message;
+            state.isLoading = false
         })
         .addCase(removeBanner.pending,(state,action)=>{
-
+            state.isLoading = true;
         })
         .addCase(removeBanner.fulfilled,(state,action)=>{
-            state.product = action.payload;
+            state.isLoading = false
         })
         .addCase(removeBanner.rejected,(state,action)=>{
-
+            state.isLoading = false
+        })
+        .addCase(editBanner.pending,(state,action)=>{
+            state.isLoading = true;
+        })
+        .addCase(editBanner.fulfilled,(state,action)=>{
+            state.isLoading = false
+            state.status = "success"
+        })
+        .addCase(editBanner.rejected,(state,action)=>{
+            state.isLoading = false
+            state.status = "failed"
         })
         .addCase(getBanners.pending,(state,action)=>{
 

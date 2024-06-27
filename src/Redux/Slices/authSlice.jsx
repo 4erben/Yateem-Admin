@@ -17,7 +17,6 @@ export const login = createAsyncThunk(
             if (!res.ok) {
                 throw new Error('Network response was not ok');
             }
-        
             const auth = await res.json();
             if(res.ok){
                 localStorage.setItem("user",JSON.stringify(auth.user));
@@ -28,7 +27,6 @@ export const login = createAsyncThunk(
             console.log(err);
             return rejectWithValue(err.message);
         }
-        
     }
 );
 export const register = createAsyncThunk(
@@ -80,6 +78,15 @@ const authSlice = createSlice({
         success: false
     },
     reducers:{
+        setCredentials:(state,action)=>{
+            const {user , access_token} = action.payload;
+            state.user = user;
+            state.token = access_token;
+        },
+        setLogOut:(state,action)=>{
+            state.user = null;
+            state.token = null;
+        },
         setUser:(state,action)=>{
             state.user = action.payload;
         }
@@ -131,5 +138,8 @@ const authSlice = createSlice({
     }
 })
 
-export const {setUser} =authSlice.actions;
+export const {setUser , setCredentials , setLogOut} =authSlice.actions;
 export default authSlice.reducer;
+
+export const selectCurrentUser = (state) =>state.auth.user;
+export const selectCurrentToken = (state) =>state.auth.token;

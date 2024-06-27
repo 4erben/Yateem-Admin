@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { Button, Col, Container, Form, Row } from 'react-bootstrap';
+import { Alert, Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { IoDocumentTextOutline } from "react-icons/io5";
 import { FaHeart } from "react-icons/fa";
-import { useDispatch } from 'react-redux';
+import { useDispatch , useSelector } from 'react-redux';
 import { createNewCard } from '../Redux/Slices/cardSlice';
 
 export default function AddGiftItem() {
@@ -21,12 +21,12 @@ export default function AddGiftItem() {
     const [endDate, setEndDate] = useState(null);
  */
     const dispatch = useDispatch();
-    const handleOnSubmit = (e)=>{
+    const status = useSelector(state=>state.card.status);
+    const isLoading = useSelector(state=>state.card.isLoading);
+    const handleOnSubmit = async(e)=>{
         e.preventDefault();
-        console.log( "img",img);
         dispatch(createNewCard({title,totalMoney,gained,category,img,Sahm1,Sahm2,Sahm3}));
     }
-    console.log(category);
   return (
     <Container fluid>
         <Container fluid className='bg-white rounded py-3 px-4 border bordr-2'>
@@ -45,13 +45,7 @@ export default function AddGiftItem() {
                         </div>
                         <hr />
                     </Row>
-                    {/* <Form.Group className='row my-3 align-items-center'>
-                        <Col lg={4}><Form.Label className='text-nowrap'>اسم الاهداء<span className='text-danger fw-bold'>*</span></Form.Label></Col>
-                        <Col lg={8} className='d-flex jusitfy-content'>
-                            <Form.Control  type='text' name='name'  onChange={(e)=>{setName(e.target.value)}} disabled />
-                            <span className='fs-8 mx-2 text-danger'>لا يظهر للجمهور</span>
-                        </Col>
-                    </Form.Group> */}
+
                     <Form.Group className='row my-3 align-items-center'>
                         <Col lg={4}>
                             <Form.Label className='text-nowrap'>العنوان علي المنصة<span className='text-danger fw-bold'>*</span></Form.Label>
@@ -177,9 +171,21 @@ export default function AddGiftItem() {
                     </Row>
                     <Row > 
                         <Col className='d-flex justify-content-center'>
-                            <Button type='submit' variant='success'> حفظ</Button>
+                            <Button type='submit' variant='success' > حفظ</Button>
                         </Col>
                     </Row>
+                    { status &&
+                        <Row className='my-3 justify-content-center text-center'>
+                            <Col lg={8}>
+                            {
+                                status === "success" ? <Alert variant="success">تم الحفظ</Alert> :
+                                status === "failed" ? <Alert variant="danger">لم يتم الحفظ</Alert>:
+                                null
+                            }
+                            </Col>
+                            
+                        </Row>
+                    }
                 </Form>
             </Row>
         </Container>

@@ -18,6 +18,8 @@ import RegisterPage from './Pages/RegisterPage';
 import RemoveGiftItem from './Pages/RemoveGiftItem';
 import EditGiftItem from './Pages/EditGiftItem';
 import { getBanners } from './Redux/Slices/bannerSlice';
+import EditCarouselItem from './Pages/editCarouselItem';
+import { getProducts } from './Redux/Slices/cardSlice';
 
 
 function App() {
@@ -29,6 +31,7 @@ function App() {
     if(user){
       dispatch(setUser(user));
       dispatch(getBanners());
+      dispatch(getProducts());
     }
   },[])
 
@@ -73,7 +76,8 @@ function App() {
             }
               />
               <Route path='/banner' element={user ? <BannersPage/>: <Navigate to="/login"/>}  />
-              <Route path='/banner/carouselItem' element={user? <AddCarouselItem/> : <Navigate to="/login" />}/>
+              <Route path='/banner/add' element={user? <AddCarouselItem/> : <Navigate to="/login" />}/>
+              <Route path='/banner/modify' element={user? <EditCarouselItem/> : <Navigate to="/login" />}/>
               <Route path='/carts/add' element={user?<AddGiftItem />: <Navigate to="/login" />} />
               <Route path='/carts/remove' element={user?<RemoveGiftItem />: <Navigate to="/login" />} />
               <Route path='/carts/edit' element={user?<EditGiftItem />: <Navigate to="/login" />} />

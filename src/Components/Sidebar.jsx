@@ -68,7 +68,7 @@ export default function Sidebar() {
                <span className='nav-item-icon'> <IoMdHome className=''/></span>
                <span className='nav-item-text'> لوحة المعلومات  </span>
             </Link>
-            <NavItem title="الموقع الاكتروني" titleIcon={<CgWebsite/>} itemsMenu ={bannersMenu}/>
+           {/*  <NavItem title="الموقع الاكتروني" titleIcon={<CgWebsite/>} itemsMenu ={bannersMenu}/> */}
             <NavItem title="الاهداءات" titleIcon={<CiGift/>} itemsMenu ={giftsMenu}/>
         </div>
     </Container>

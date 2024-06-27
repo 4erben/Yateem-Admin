@@ -3,14 +3,14 @@ import { Button, Col, Container, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 import { TiDocumentAdd } from "react-icons/ti";
 import { useDispatch, useSelector } from 'react-redux';
-import { getBanners } from '../Redux/Slices/bannerSlice';
+import { removeBanner } from '../Redux/Slices/bannerSlice';
+
 
 export default function BannersPage() {
     const dispatch = useDispatch();
     const banners = useSelector(state=>state.banner.banners);
-    const handleDeleteBanner = (e)=>{
-        
-    }
+
+
     console.log(banners);
 
   return (
@@ -21,7 +21,7 @@ export default function BannersPage() {
                 <span>بانر الموقع الاكتروني</span>
             </Col>
             <Col className='col-4 d-flex justify-content-between '>
-                <Link to="carouselItem" className=' mx-1 btn btn-info text-white'>
+                <Link to="add" className=' mx-1 btn btn-info text-white'>
                 <TiDocumentAdd className='fs-5'/>
                 <span className='mx-1'>اضافة بانر</span>
                 </Link>
@@ -44,7 +44,7 @@ export default function BannersPage() {
                     </tr>
                 </thead>
                 <tbody>
-                    {banners.map((caro)=>{
+                    {banners && banners.map((caro)=>{
                         return(
                             <tr key={caro.id}>
                                 <td>{caro.id}</td>
@@ -52,8 +52,8 @@ export default function BannersPage() {
                                 <td></td>
                                 <td></td>
                                 <td className='d-flex justify-content-around'>
-                                    <Link  to="modifyCarousel" className='mx-1 btn btn-info text-white'>تعديل</Link>
-                                    <Button to="deleteCarousel" className='btn btn-danger text-white' onClick={handleDeleteBanner}>حذف</Button>
+                                    <Link  to="modify" className='mx-1 btn btn-info text-white'>تعديل</Link>
+                                    <Button to="deleteCarousel" className='btn btn-danger text-white' onClick={()=>{dispatch(removeBanner({bannerId: caro.id}))}}>حذف</Button>
                                 </td>
                             </tr>
                         )
