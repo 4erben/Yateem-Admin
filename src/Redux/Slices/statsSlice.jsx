@@ -54,6 +54,32 @@ export const getStats = createAsyncThunk(
           }
       }
 )
+export const getChart = createAsyncThunk(
+    "stats/getChart",
+    async(args ,{rejectWithValue})=>{
+        const token = JSON.parse(localStorage.getItem("token"));
+          try{
+              const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/api/total-donations`,{
+                  method:"GET",
+                  headers:{
+                    "Authorization" : `Bearer ${token}`
+                  }
+              });
+              if (!res.ok) {
+                  const errorData = await res.json();
+                  throw new Error(errorData.message  || "An Error Occured");
+              }
+              const chart = await res.json();
+              if(res.ok){
+                  localStorage.setItem("chart",JSON.stringify(chart));
+              }
+              return chart;
+          }catch(err){
+              console.log(err);
+              return rejectWithValue(err.message);
+          }
+      }
+)
 
 
 
@@ -63,6 +89,7 @@ const statsSlice = createSlice({
 
          payments:[],
          stats:[],
+         chart:[],
          err:null,
          loading: false,
          success: false
@@ -86,6 +113,15 @@ const statsSlice = createSlice({
              state.stats = action.payload;
          })
          .addCase(getStats.rejected,(state,action)=>{
+             
+         })
+         .addCase(getChart.pending,(state,action)=>{
+ 
+         })
+         .addCase(getChart.fulfilled,(state,action)=>{
+             state.chart = action.payload;
+         })
+         .addCase(getChart.rejected,(state,action)=>{
              
          })
      }

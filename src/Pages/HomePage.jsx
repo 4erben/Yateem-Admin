@@ -17,9 +17,10 @@ export default function HomePage() {
     { date: '2024-06-09', value: 200 },
     { date: '2024-06-10', value: 210 }
   ];
-const stats = useSelector(state=>state.stats.stats);
+  const chart = useSelector(state=>state.stats.chart);
+  const stats = useSelector(state=>state.stats.stats);
 
-const payments = useSelector(state=>state.stats.payments);
+  const payments = useSelector(state=>state.stats.payments);
   return (
     <Container fluid className='px-0  my-0 '>
       {/* Main  */}
@@ -85,13 +86,13 @@ const payments = useSelector(state=>state.stats.payments);
         </Col>
         <Col className='col-12 my-4 bg-white rounded rounded-3 fs-8 '>
         <ResponsiveContainer width="100%" height={250} className="my-4">
-        <AreaChart data={data}>
+        <AreaChart data={chart}>
         <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="date" />
+          <XAxis dataKey="donation_date" />
           <YAxis />
           <Tooltip />
-          <Area type="monotone" dataKey="value" stroke="#8884d8" fillOpacity={1} fill="#8884d822"  dot={{ stroke: '#8884d8', strokeWidth: 2 }}/>
-          <Brush dataKey="date" height={30} stroke="#8884d8"/>
+          <Area type="monotone" dataKey="amount" stroke="#8884d8" fillOpacity={1} fill="#8884d822"  dot={{ stroke: '#8884d8', strokeWidth: 2 }}/>
+          <Brush dataKey="donation_date" height={30} stroke="#8884d8"/>
       </AreaChart>
       </ResponsiveContainer>
         </Col>

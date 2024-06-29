@@ -20,7 +20,7 @@ import EditGiftItem from './Pages/EditGiftItem';
 import { getBanners } from './Redux/Slices/bannerSlice';
 import EditCarouselItem from './Pages/editCarouselItem';
 import { getProducts } from './Redux/Slices/cardSlice';
-import { getPayments, getStats } from './Redux/Slices/statsSlice';
+import { getChart, getPayments, getStats } from './Redux/Slices/statsSlice';
 
 
 function App() {
@@ -35,6 +35,7 @@ function App() {
       dispatch(getProducts());
       dispatch(getPayments());
       dispatch(getStats());
+      dispatch(getChart());
     }
   },[])
 
