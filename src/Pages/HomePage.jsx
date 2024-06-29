@@ -1,8 +1,6 @@
 import React from 'react'
 import { Col, Container, Row} from 'react-bootstrap';
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis ,Tooltip, ResponsiveContainer, Brush} from "recharts";
-import { FaRegArrowAltCircleRight } from "react-icons/fa";
-import { FaHome } from "react-icons/fa";
 import { useSelector } from 'react-redux';
 
 
@@ -19,102 +17,9 @@ export default function HomePage() {
     { date: '2024-06-09', value: 200 },
     { date: '2024-06-10', value: 210 }
   ];
-  const statsData = [
-    {
-        no: 451723407230,
-        donatorName: "",
-        phoneNo: 966562110906,
-        donationNo: 1,
-        donationMethod: "بطاقة ائتمانية",
-        date: "20/06/2024 04:04 ص",
-        donationLink: ""
-    },
-    {
-        no: 451723407231,
-        donatorName: "",
-        phoneNo: 966562110907,
-        donationNo: 2,
-        donationMethod: "بطاقة ائتمانية",
-        date: "21/06/2024 04:05 ص",
-        donationLink: ""
-    },
-    {
-        no: 451723407232,
-        donatorName: "",
-        phoneNo: 966562110908,
-        donationNo: 3,
-        donationMethod: "بطاقة ائتمانية",
-        date: "22/06/2024 04:06 ص",
-        donationLink: ""
-    },
-    {
-        no: 451723407233,
-        donatorName: "",
-        phoneNo: 966562110909,
-        donationNo: 4,
-        donationMethod: "بطاقة ائتمانية",
-        date: "23/06/2024 04:07 ص",
-        donationLink: ""
-    },
-    {
-        no: 451723407234,
-        donatorName: "",
-        phoneNo: 966562110910,
-        donationNo: 5,
-        donationMethod: "بطاقة ائتمانية",
-        date: "24/06/2024 04:08 ص",
-        donationLink: ""
-    },
-    {
-        no: 451723407235,
-        donatorName: "",
-        phoneNo: 966562110911,
-        donationNo: 6,
-        donationMethod: "بطاقة ائتمانية",
-        date: "25/06/2024 04:09 ص",
-        donationLink: ""
-    },
-    {
-        no: 451723407236,
-        donatorName: "",
-        phoneNo: 966562110912,
-        donationNo: 7,
-        donationMethod: "بطاقة ائتمانية",
-        date: "26/06/2024 04:10 ص",
-        donationLink: ""
-    },
-    {
-        no: 451723407237,
-        donatorName: "",
-        phoneNo: 966562110913,
-        donationNo: 8,
-        donationMethod: "بطاقة ائتمانية",
-        date: "27/06/2024 04:11 ص",
-        donationLink: ""
-    },
-    {
-        no: 451723407238,
-        donatorName: "",
-        phoneNo: 966562110914,
-        donationNo: 9,
-        donationMethod: "بطاقة ائتمانية",
-        date: "28/06/2024 04:12 ص",
-        donationLink: ""
-    },
-    {
-        no: 451723407239,
-        donatorName: "",
-        phoneNo: 966562110915,
-        donationNo: 10,
-        donationMethod: "بطاقة ائتمانية",
-        date: "29/06/2024 04:13 ص",
-        donationLink: ""
-    }
-];
 const stats = useSelector(state=>state.stats.stats);
 
 const payments = useSelector(state=>state.stats.payments);
-console.log(stats);
   return (
     <Container fluid className='px-0  my-0 '>
       {/* Main  */}
@@ -208,7 +113,7 @@ console.log(stats);
               </tr>
             </thead>
             <tbody>
-              {payments.map((stat)=>{
+              {payments?.map((stat)=>{
                 return(
                   <tr key={stat.id}>
                     <td>{stat.id}</td>
