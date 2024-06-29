@@ -3,6 +3,7 @@ import { Col, Container, Row} from 'react-bootstrap';
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis ,Tooltip, ResponsiveContainer, Brush} from "recharts";
 import { FaRegArrowAltCircleRight } from "react-icons/fa";
 import { FaHome } from "react-icons/fa";
+import { useSelector } from 'react-redux';
 
 
 export default function HomePage() {
@@ -110,6 +111,10 @@ export default function HomePage() {
         donationLink: ""
     }
 ];
+const stats = useSelector(state=>state.stats.stats);
+
+const payments = useSelector(state=>state.stats.payments);
+console.log(stats);
   return (
     <Container fluid className='px-0  my-0 '>
       {/* Main  */}
@@ -121,28 +126,28 @@ export default function HomePage() {
           <span className='ms-2'><i className="fa-solid fa-users display-4 text-success "></i></span>
           <div>
             <p>متبرعين الشهر الحالي</p>
-            <p className='text-secondary'>79</p>
+            <p className='text-secondary'>{stats?.current_month_donors}</p>
           </div>
         </Col>
         <Col md={4} lg={4} className='d-flex stat-card justify-content-around mb-2 text-center'>
         <span className='ms-2'><i className="fa-solid fa-coins display-4 text-info "></i></span>
           <div>
             <p>تبرعات الشهر الحالي</p>
-            <p className='text-secondary'>3,701</p>
+            <p className='text-secondary'>{stats?.current_month_donations}</p>
           </div>
         </Col>
         <Col md={4} lg={4} className='d-flex stat-card justify-content-around mb-2 text-center'>
         <span className='ms-2'><i className="fa-solid fa-dollar-sign display-4 text-indigo-400 "></i></span>
           <div>
             <p>اجمالي مبلغ التبرعات</p>
-            <p className='text-secondary'>106,069</p>
+            <p className='text-secondary'>{stats?.total_donations}</p>
           </div>
         </Col>
         <Col md={4} lg={4} className='d-flex stat-card justify-content-around mb-2 text-center'>
         <span className='ms-2'><i className="fa-solid fa-user display-4 text-warning "></i></span>
           <div>
             <p>اجمالي المتبرعين</p>
-            <p className='text-secondary'>922</p>
+            <p className='text-secondary'>{stats?.total_donors}</p>
           </div>
         </Col>
         <Col md={4} lg={4} className='d-flex stat-card justify-content-around mb-2 text-center'>
@@ -156,7 +161,7 @@ export default function HomePage() {
         <span className='ms-2'><i className="fa-solid fa-percent display-4 text-info "></i></span>
           <div>
             <p>نسبة تحقيق المستهدف</p>
-            <p className='text-secondary'>4</p>
+            <p className='text-secondary'>{stats?.target_achieved_percentage}</p>
           </div>
         </Col>
       </Row>
@@ -203,15 +208,15 @@ export default function HomePage() {
               </tr>
             </thead>
             <tbody>
-              {statsData.map((stat)=>{
+              {payments.map((stat)=>{
                 return(
-                  <tr key={stat.no}>
-                    <td>{stat.no}</td>
-                    <td>{stat.donatorName}</td>
-                    <td>{stat.phoneNo}</td>
-                    <td>{stat.donationNo}</td>
-                    <td>{stat.donationMethod}</td>
-                    <td>{stat.date}</td>
+                  <tr key={stat.id}>
+                    <td>{stat.id}</td>
+                    <td>{stat.name_on_card}</td>
+                    <td>{stat.phone}</td>
+                    <td>{stat.amount}</td>
+                    <td>{stat.card_number}</td>
+                    <td>{stat.created_at}</td>
                     <td><i className="fa-solid fa-print  text-primary"></i></td>
                   </tr>
                 )

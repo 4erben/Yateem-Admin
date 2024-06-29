@@ -10,17 +10,19 @@ export const login = createAsyncThunk(
         }
     }
         try{
-            const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/api/auth/login`,{
+            const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/api/auth/admin/login`,{
                 method:"POST",
                 body: data
             });
             if (!res.ok) {
-                throw new Error('Network response was not ok');
+                const errorData = await res.json();
+                throw new Error(errorData.message  || "An Error Occured");
             }
             const auth = await res.json();
+            console.log(auth);
             if(res.ok){
-                localStorage.setItem("user",JSON.stringify(auth.user));
-                localStorage.setItem("token",JSON.stringify(auth.access_token));
+                localStorage.setItem("user",JSON.stringify(auth.admin));
+                localStorage.setItem("token",auth.token);
             }
             return auth;
         }catch(err){
@@ -33,7 +35,7 @@ export const register = createAsyncThunk(
     "auth/register",
     async(args)=>{
         try{
-             const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/api/auth/register`,{
+             const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/api/auth/admin/register`,{
                 method:"POST",
                 headers:{"Content-Type":"application/json"},
                 body: JSON.stringify(
@@ -44,7 +46,8 @@ export const register = createAsyncThunk(
                     })
             });
             if (!res.ok) {
-                throw new Error('Network response was not ok');
+                const errorData = await res.json();
+                throw new Error(errorData.message  || "An Error Occured")
             }
             const data = await res.json();
             if(res.ok){
@@ -68,20 +71,23 @@ export const logout = createAsyncThunk(
 )
 
 
+
 const authSlice = createSlice({
    name: "auth",
     initialState:{
         token: null,
         user:null,
+        payments:null,
+        stats:null,
         err:null,
         loading: false,
         success: false
     },
     reducers:{
         setCredentials:(state,action)=>{
-            const {user , access_token} = action.payload;
-            state.user = user;
-            state.token = access_token;
+            const {admin , token} = action.payload;
+            state.user = admin;
+            state.token = token;
         },
         setLogOut:(state,action)=>{
             state.user = null;
@@ -98,10 +104,10 @@ const authSlice = createSlice({
         })
         .addCase(login.fulfilled,(state,action)=>{
             state.loading = false;
-            state.token = action.payload.access_token;
-            state.user = action.payload.user;
-            localStorage.setItem("token",JSON.stringify(action.payload.access_token));
-            localStorage.setItem("user",JSON.stringify(action.payload.user));
+            state.token = action.payload.token;
+            state.user = action.payload.admin;
+            localStorage.setItem("token",JSON.stringify(action.payload.token));
+            localStorage.setItem("user",JSON.stringify(action.payload.admin));
             state.success = true
         })
         .addCase(login.rejected,(state,action)=>{

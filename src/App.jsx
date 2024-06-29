@@ -13,13 +13,14 @@ import AddGiftItem from './Pages/AddGiftItem';
 import LoginPage from './Pages/LoginPage';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setUser } from './Redux/Slices/authSlice';
+import {  setUser } from './Redux/Slices/authSlice';
 import RegisterPage from './Pages/RegisterPage';
 import RemoveGiftItem from './Pages/RemoveGiftItem';
 import EditGiftItem from './Pages/EditGiftItem';
 import { getBanners } from './Redux/Slices/bannerSlice';
 import EditCarouselItem from './Pages/editCarouselItem';
 import { getProducts } from './Redux/Slices/cardSlice';
+import { getPayments, getStats } from './Redux/Slices/statsSlice';
 
 
 function App() {
@@ -32,6 +33,8 @@ function App() {
       dispatch(setUser(user));
       dispatch(getBanners());
       dispatch(getProducts());
+      dispatch(getPayments());
+      dispatch(getStats());
     }
   },[])
 
