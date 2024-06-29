@@ -61,8 +61,8 @@ const statsSlice = createSlice({
     name: "stats",
      initialState:{
 
-         payments:null,
-         stats:null,
+         payments:[],
+         stats:[],
          err:null,
          loading: false,
          success: false
