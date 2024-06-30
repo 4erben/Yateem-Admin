@@ -16,7 +16,6 @@ export const getPayments = createAsyncThunk(
                   throw new Error(errorData.message  || "An Error Occured");
               }
               const payments = await res.json();
-              console.log(payments);
               if(res.ok){
                   localStorage.setItem("payments",JSON.stringify(payments));
               }

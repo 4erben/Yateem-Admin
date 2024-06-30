@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-export default function NavItem({title ,titleIcon ,itemsMenu}) {
+export default function NavItemMenu({title ,titleIcon ,itemsMenu}) {
     const [isClicked,setIsClicked] = useState(false);
     const isIconsOn = useSelector(state=>state.app.isIconOn);
   return (
@@ -15,7 +15,7 @@ export default function NavItem({title ,titleIcon ,itemsMenu}) {
           {
             itemsMenu.map((item)=>{
               return(
-                    <Link className="nav-item" to={`${item.link}`} key={item.title}>
+                    <Link className="nav-item child" to={`${item.link}`} key={item.title}>
                       <span className='nav-item-icon'>
                       {item.icon}
                       </span>

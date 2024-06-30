@@ -35,7 +35,6 @@ export const getBanners = createAsyncThunk(
     "banner/getBanners",
     async(args)=>{
         const token = JSON.parse(localStorage.getItem("token"));
-      console.log(args);
         try{
             const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/api/logos?token=${token}`);
             if(!res.ok){
