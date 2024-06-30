@@ -21,6 +21,9 @@ import { getBanners } from './Redux/Slices/bannerSlice';
 import EditCarouselItem from './Pages/editCarouselItem';
 import { getProducts } from './Redux/Slices/cardSlice';
 import { getChart, getPayments, getStats } from './Redux/Slices/statsSlice';
+import PortPages from './Pages/PortPages';
+import AddPortPage from './Pages/AddPortPage';
+import Logo from './Pages/LogoPage/Logo';
 
 
 function App() {
@@ -75,13 +78,14 @@ function App() {
         {/* Routes */}
         <Container fluid className='mx-0 px-0 py-4 bg-c-grey'>
             <Routes>
-              <Route path='/' element={ user ? <HomePage/>:
-                <Navigate to="/login"/>  
-            }
-              />
-              <Route path='/banner' element={user ? <BannersPage/>: <Navigate to="/login"/>}  />
-              <Route path='/banner/add' element={user? <AddCarouselItem/> : <Navigate to="/login" />}/>
-              <Route path='/banner/modify' element={user? <EditCarouselItem/> : <Navigate to="/login" />}/>
+              <Route path='/' element={ user ? <HomePage/>: <Navigate to="/login"/>}/>
+              <Route path='/website/banner' element={user ? <BannersPage/>: <Navigate to="/login"/>}  />
+              <Route path='/website/banner/add' element={user? <AddCarouselItem/> : <Navigate to="/login" />}/>
+              <Route path='/website/banner/modify'  element={user? <EditCarouselItem/> : <Navigate to="/login" />}/>
+              <Route path='/website/logo'  element={user? <Logo /> : <Navigate to="/login" />}/>
+              <Route path='/website/logo/modify'  element={user? <EditCarouselItem/> : <Navigate to="/login" />}/>
+              <Route path='/website/portalPages'  element={user? <PortPages/> : <Navigate to="/login" />}/>
+              <Route path='/website/portalPages/add'  element={user? <AddPortPage/> : <Navigate to="/login" />}/>
               <Route path='/carts/add' element={user?<AddGiftItem />: <Navigate to="/login" />} />
               <Route path='/carts/remove' element={user?<RemoveGiftItem />: <Navigate to="/login" />} />
               <Route path='/carts/edit' element={user?<EditGiftItem />: <Navigate to="/login" />} />

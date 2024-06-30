@@ -6,17 +6,17 @@ export const createNewBanner = createAsyncThunk(
         const token = JSON.parse(localStorage.getItem("token"));
         const { ...formData } = args;
         const data = new FormData();
-        data.append("token",token);
+/*         data.append("token",token); */
         for (const key in args) {
             if (args.hasOwnProperty(key)) {
             data.append(key, formData[key]);
             }
         }
         try{
-            const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/api/logos`,{
+            const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/api/images`,{
                 method:"POST",
                 headers:{
-                   /*  "Authorization": `Bearer ${token}` */
+                    "Authorization": `Bearer ${token}`
                 },
                 body:data
             });
@@ -33,27 +33,27 @@ export const createNewBanner = createAsyncThunk(
 );
 export const getBanners = createAsyncThunk(
     "banner/getBanners",
-    async(args)=>{
-        const token = JSON.parse(localStorage.getItem("token"));
+    async(args ,{rejectWithValue})=>{
         try{
-            const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/api/logos?token=${token}`);
+            const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/api/images`);
             if(!res.ok){
-                throw new Error("Error Occured")
+                throw new Error(res.status)
             }
             const card = await res.json();
             return card;
         }catch(err){
             console.log(err);
-            return err.message;
+            return rejectWithValue(err.message) ;
         }
     }
 );
 
 export const editBanner = createAsyncThunk(
-    "banner/removeBanner",
+    "banner/editBanner",
     async(args,{rejectWithValue})=>{
         const token = JSON.parse(localStorage.getItem("token"));
-        const { ...formData } = args;
+        const {id, ...formData } = args;
+         console.log( "id is :",id , formData);
         const data = new FormData();
        /*  data.append("token",token); */
         for (const key in args) {
@@ -62,10 +62,10 @@ export const editBanner = createAsyncThunk(
             }
         }
         try{
-            const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/api/logos`,{
+            const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/api/images/${id}`,{
                 method:"PUT",
                 headers:{
-                   /*  "Authorization": `Bearer ${token}` */
+                    "Authorization": `Bearer ${token}`
                 },
                 body:data
             });
@@ -82,22 +82,22 @@ export const editBanner = createAsyncThunk(
 );
 
 export const removeBanner = createAsyncThunk(
-    "banner/removeProduct",
+    "banner/removeBanner",
     async(args,{rejectWithValue})=>{
         const {token} = JSON.parse(localStorage.getItem("token"));
-        const {bannerId} = args;
-        console.log(bannerId);
+        const {id} = args;
+        console.log("slice id ", id);
         try{
-            const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/api/logos`,{
+            const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/api/images/${id}`,{
                 method:"DELETE",
                 headers:{
                     "Content-Type":"application/json",
                     "Authorization": `Bearer ${token}`
-                },
-                body:JSON.stringify(bannerId)
+                }
             });
-                const response = await res.json();
-                return response;
+            if(res.ok){
+
+            }
         }catch(err){
         console.log(err)
         return rejectWithValue(err.message);

@@ -13,6 +13,7 @@ import { BiSolidCoinStack } from "react-icons/bi";
 import { BsFillPeopleFill } from "react-icons/bs";
 import { LiaComments } from "react-icons/lia";
 import { IoPhonePortraitSharp, IoQrCodeOutline, IoSettings } from 'react-icons/io5';
+import { RxIconjarLogo } from "react-icons/rx";
 
 const websiteMenu = [
     {
@@ -21,9 +22,14 @@ const websiteMenu = [
         link: "/website/banner"
     },
     {
+      title: "اللوجو",
+      icon : <RxIconjarLogo />,
+      link : "/website/logo"  
+    },
+    {
         title: "صفحات الموقع",
         icon: <GrArticle/>,
-        link: "/website"
+        link: "/website/portalPages"
     },
     {
         title: "اعدادات رئيسية",

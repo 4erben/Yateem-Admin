@@ -16,7 +16,8 @@ export const login = createAsyncThunk(
             });
             if (!res.ok) {
                 const errorData = await res.json();
-                throw new Error(errorData.message  || "An Error Occured");
+                console.log("error" , errorData);
+                throw new Error(errorData.error  || "An Error Occured");
             }
             const auth = await res.json();
             console.log(auth);
@@ -47,7 +48,7 @@ export const register = createAsyncThunk(
             });
             if (!res.ok) {
                 const errorData = await res.json();
-                throw new Error(errorData.message  || "An Error Occured")
+                throw new Error(errorData.error  || "An Error Occured")
             }
             const data = await res.json();
             if(res.ok){
@@ -121,12 +122,8 @@ const authSlice = createSlice({
         })
         .addCase(register.fulfilled,(state,action)=>{
             state.loading = false;
-            if(action.payload.error){
-                state.err = action.payload.error;
-                state.user = null;
-            }else{
-                state.user = action.payload;
-            }
+            state.user = action.payload.admin;
+
         })
         .addCase(register.rejected,(state,action)=>{
             state.loading = false;

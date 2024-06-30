@@ -7,11 +7,11 @@ import { createNewBanner } from '../Redux/Slices/bannerSlice';
 export default function AddCarouselItem() {
   const dispatch = useDispatch();
   const [title , setTitle] = useState("");
-  const [image , setImage] = useState(null);
-  const [imageUrl , setImageUrl] = useState("");
+  const [num , setNum] = useState("");
+  const [image_url , setImage] = useState(null);
   const handleOnSubmit = (e)=>{
       e.preventDefault();
-      dispatch(createNewBanner(title,image,imageUrl));
+      dispatch(createNewBanner(title,image_url,num));
   }
   return (
     <Container fluid className=''>
@@ -29,6 +29,14 @@ export default function AddCarouselItem() {
             </Col>
           </Form.Group>
           <Form.Group className='row mb-4'>
+            <Col lg={2} className=''>
+              <Form.Label htmlFor='bannerNum'>ترتيب البانر</Form.Label>
+            </Col>
+            <Col lg={10}> 
+              <Form.Control id='bannerNum' type='number' placeholder='ادخل ترتيب البانر'  name='bannerNum' onChange={(e)=>{setNum(e.target.value)}} required/>
+            </Col>
+          </Form.Group>
+          <Form.Group className='row mb-4'>
             <Col lg={2}>
               <Form.Label>الصورة</Form.Label>
             </Col>
@@ -40,82 +48,6 @@ export default function AddCarouselItem() {
               </Form.Label>
             </Col>
           </Form.Group>
-          {/* <Form.Group className='row mb-4'>
-            <Col lg={2} className=''><Form.Label htmlFor='imageLink'>اضافة رابط للصورة</Form.Label></Col>
-            <Col lg={10}> <Form.Control id='imageLink' type='text' placeholder='يمكنك ترك الرابط فارغ'  name='imageLink' onChange={(e)=>{setImageUrl(e.target.value)}} disabled/></Col>
-          </Form.Group> */}
-         {/*  <h5 className=' mt-5'>خيارات اضافية</h5>
-          <hr className='m-0'/>
-          <Form.Group className='row my-4'>
-            <Col lg={6}>
-              <Row>
-                <Col lg={6} className=''>
-                  <Form.Label htmlFor='mainAddress'>العنوان الرئيسي</Form.Label>
-                </Col>
-                <Col lg={6} className=''>
-                  <Form.Control id='mainAddress' type='text' name='mainAddress' disabled/>
-                </Col>
-              </Row>
-            </Col>
-            <Col lg={6}>
-              <Row>
-                <Col lg={6} className=''>
-                  <Form.Label htmlFor='subAddress'>العنوان الثانوي</Form.Label>
-                </Col>
-                <Col lg={6} className=''>
-                  <Form.Control id='subAddress' type='text' name='subAddress' disabled/>
-                </Col>
-              </Row>
-            </Col>
-          </Form.Group>
-          <Form.Group className='row'>
-            <Col lg={3}><Form.Label htmlFor='bannerDescription'>وصف مختصر</Form.Label></Col>
-            <Col lg={9}><Form.Control type='text' id='bannerDescription' name='bannerDescription' disabled/></Col>
-          </Form.Group>
-          <Form.Group className='row my-5'>
-            <Col lg={6}>
-              <Row>
-                <Col lg={6} className=''>
-                  <Form.Label htmlFor='firstButtonAddress'>عنوان الزر الاول</Form.Label>
-                </Col>
-                <Col lg={6} className=''>
-                  <Form.Control id='firstButtonAddress' type='text'  name='firstButtonAddress' disabled/>
-                </Col>
-              </Row>
-            </Col>
-            <Col lg={6}>
-              <Row>
-                <Col lg={6} className=''>
-                  <Form.Label htmlFor='firstButtonLink'>رابط الزر الاول</Form.Label>
-                </Col>
-                <Col lg={6} className=''>
-                  <Form.Control id='firstButtonLink' type='text' name='firstButtonLink'disabled />
-                </Col>
-              </Row>
-            </Col>
-          </Form.Group>
-          <Form.Group className='row my-5'>
-            <Col lg={6}>
-              <Row>
-                <Col lg={6} className=''>
-                  <Form.Label htmlFor='secondButtonAddress'>عنوان الزر الثاني</Form.Label>
-                </Col>
-                <Col lg={6} className=''>
-                  <Form.Control id='secondButtonAddress' type='text' name='secondButtonAddress'  disabled/>
-                </Col>
-              </Row>
-            </Col>
-            <Col lg={6}>
-              <Row>
-                <Col lg={6} className=''>
-                  <Form.Label htmlFor='secondButtonLink'>رابط الزر الثاني</Form.Label>
-                </Col>
-                <Col lg={6} className=''>
-                  <Form.Control id='secondButtonLink' type='text' name='secondButtonLink' disabled/>
-                </Col>
-              </Row>
-            </Col>
-          </Form.Group> */}
           <Form.Group className='d-flex'>
             <Button className='me-auto' variant='success' type='submit'>حفظ</Button>
           </Form.Group>
