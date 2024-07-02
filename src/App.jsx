@@ -24,6 +24,18 @@ import { getChart, getPayments, getStats } from './Redux/Slices/statsSlice';
 import PortPages from './Pages/PortPages';
 import AddPortPage from './Pages/AddPortPage';
 import Logo from './Pages/LogoPage/Logo';
+import Associtation from './Pages/AssociationPage/associtation';
+import Main from './Pages/AssociationPage/main-components/Overview';
+import Overview from './Pages/AssociationPage/main-components/Overview';
+import Attendes from './Pages/AssociationPage/main-components/Attendes';
+import Cats from './Pages/AssociationPage/main-components/Cats';
+import Schedule from './Pages/AssociationPage/main-components/Schedule';
+import Themes from './Pages/AssociationPage/main-components/Themes';
+import EditAssoc from './Pages/AssociationPage/EditAssoc';
+import EditOverview from './Pages/AssociationPage/edit-components/EditOverview';
+import EditAttendes from './Pages/AssociationPage/edit-components/EditAttendes';
+import EditCats from './Pages/AssociationPage/edit-components/EditCats';
+import EditSchedule from './Pages/AssociationPage/edit-components/EditSchedule';
 
 
 function App() {
@@ -89,6 +101,24 @@ function App() {
               <Route path='/carts/add' element={user?<AddGiftItem />: <Navigate to="/login" />} />
               <Route path='/carts/remove' element={user?<RemoveGiftItem />: <Navigate to="/login" />} />
               <Route path='/carts/edit' element={user?<EditGiftItem />: <Navigate to="/login" />} />
+              <Route path='/association' element={user?<Associtation /> : <Navigate to="/login" />} >
+                      <Route path='/association/' element={<Overview />} />
+                      <Route path='/association/course-attendes' element={<Attendes />} />
+                      <Route path='/association/course-cats' element={<Cats />} />
+                      <Route path='/association/course-schedule' element={<Schedule />} />
+                      <Route path='/association/themes' element={<Themes />} />
+              </Route>
+              <Route path='/association/edit' element={user?<EditAssoc /> : <Navigate to="/login" />} >
+                      <Route path='/association/edit' element={<EditOverview />} />
+                      <Route path='/association/edit/course-attendes' element={<EditAttendes />} />
+                      <Route path='/association/edit/course-cats' element={<EditCats />} />
+                      <Route path='/association/edit/course-schedule' element={<EditSchedule />} />
+                      <Route path='/association/edit/themes' element={<Themes />} />
+              </Route>
+
+
+
+
               <Route path='/login'  element={!user? <LoginPage />: <Navigate to="/"/>}/>
               <Route path='/register'  element={!user? <RegisterPage />: <Navigate to="/"/>}/>
             </Routes>
