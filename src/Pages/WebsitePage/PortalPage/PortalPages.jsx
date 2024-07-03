@@ -1,27 +1,27 @@
 import React from 'react'
-import TableComponent from '../Components/TableComponent'
+import TableComponent from '../../../Components/TableComponent'
 import { Container , Row , Col , Button } from 'react-bootstrap'
 import { TiDocumentAdd } from 'react-icons/ti'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
-export default function PortPages({data}) {
-    data = [ {no : 1, title:"asdasd"}]
+export default function PortalPages({data}) {
+    data = [ {id : 1, title:"asdasd"}];
+    const navigate = useNavigate();
+    const handleModify = (data)=>{
+        navigate("modify",{state:{data}})
+    }
   return (
     <Container fluid className='banner'>
-    <Container className='bg-white rounded py-4 banner-table'>
+    <Container className='bg-white rounded py-4 banner-table' fluid>
     <div className='d-flex py-2 px-3 mb-3'>
         <Col className='col-8'>
-            <span>بانر الموقع الاكتروني</span>
+            <span>صفحات الموقع الاكتروني</span>
         </Col>
         <Col className='col-4 d-flex justify-content-between '>
             <Link to="add" className=' mx-1 btn btn-info text-white'>
             <TiDocumentAdd className='fs-5'/>
             <span className='mx-1'>اضافة بانر</span>
             </Link>
-            {/* <Link  className='btn btn-success text-white '>
-            <TiDocumentAdd/>
-            <span className='mx-1'>ترتيب العناصر</span>
-            </Link> */}
         </Col>
     </div>
     <Row className='w-100'>
@@ -43,8 +43,8 @@ export default function PortPages({data}) {
                             <td>{caro.title}</td>
                             <td></td>
                             <td className='d-flex justify-content-around'>
-                                <Link  to="modify" className='mx-1 btn btn-info text-white'>تعديل</Link>
-                                <Button to="deleteCarousel" className='btn btn-danger text-white' onClick={()=>{dispatch(removeBanner({bannerId: caro.id}))}}>حذف</Button>
+                                <Button  to="modify" className='mx-1 btn btn-info text-white' onClick={()=>handleModify(caro)}>تعديل</Button>
+                                <Button to="deleteCarousel" className='btn btn-danger text-white' onClick={()=>handleDelete(caro.id)}>حذف</Button>
                             </td>
                         </tr>
                     )

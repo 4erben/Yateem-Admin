@@ -1,14 +1,11 @@
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import  {Routes , Route, Link, useLocation, Navigate, BrowserRouter}  from "react-router-dom";
+import  {Routes , Route, Link, useLocation, Navigate, useNavigate}  from "react-router-dom";
 import  {Col, Container, Row} from "react-bootstrap"
 import Header from './Components/Header';
 import Sidebar from './Components/Sidebar';
-import HomePage from './Pages/HomePage';
-import { FaHome, FaRegArrowAltCircleRight } from 'react-icons/fa';
-import BannersPage from './Pages/BannersPage';
-import AddCarouselItem from './Pages/AddCarouselItem';
+import { FaHome, FaRegArrowAltCircleLeft, FaRegArrowAltCircleRight } from 'react-icons/fa';
 import LoginPage from './Pages/AuthPages/LoginPage.jsx';
 import RegisterPage from './Pages/AuthPages/RegisterPage.jsx';
 import { useEffect } from 'react';
@@ -16,11 +13,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import {  setUser } from './Redux/Slices/authSlice';
 
 import { getBanners } from './Redux/Slices/bannerSlice';
-import EditCarouselItem from './Pages/editCarouselItem';
 import { getProducts } from './Redux/Slices/cardSlice';
 import { getChart, getPayments, getStats } from './Redux/Slices/statsSlice';
-import PortPages from './Pages/PortPages';
-import AddPortPage from './Pages/AddPortPage';
+import PortPages from './Pages/WebsitePage/PortalPage/PortalPages.jsx';
+import AddPortPage from './Pages/WebsitePage/PortalPage/components/AddPortPage.jsx';
 import Logo from './Pages/LogoPage/Logo';
 import Associtation from './Pages/AssociationPage/associtation';
 import Overview from './Pages/AssociationPage/main-components/Overview';
@@ -36,9 +32,16 @@ import EditSchedule from './Pages/AssociationPage/edit-components/EditSchedule';
 import AddProject from './Pages/ProjectsPage/AddProject';
 import EditProject from './Pages/ProjectsPage/EditProject';
 import AllProjects from './Pages/ProjectsPage/AllProjects';
+import BannersPage from './Pages/WebsitePage/BannersPage/BannersPage.jsx';
+import AddCarouselItem from './Pages/WebsitePage/BannersPage/components/AddCarouselItem.jsx';
+import EditCarouselItem from './Pages/WebsitePage/BannersPage/components/editCarouselItem.jsx';
+import HomePage from './Pages/Homepage/HomePage.jsx';
+import EditPortal from './Pages/WebsitePage/PortalPage/components/EditPortal.jsx';
+import ReportPage from './Pages/generalReportPage/ReportPage.jsx';
 
 
 function App() {
+  const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
   const user = useSelector(state=>state.auth.user);
@@ -57,6 +60,17 @@ function App() {
     }
   },[user]);
   
+  const handleGoBack= ()=> {
+    navigate(-1);
+  }
+  const handleGoForward= ()=> {
+    navigate(+1);
+  }
+
+
+
+
+
   if(!localUser){
     return(
       <Routes>
@@ -65,7 +79,6 @@ function App() {
         <Route path='*' element={<Navigate to="/" />} />
       </Routes>
     )}
-
   return (
     
     <Container fluid className='px-0' dir='rtl'>
@@ -84,9 +97,12 @@ function App() {
         {/* Main Info */}
         <Col className='px-0'>
         <Row className='py-3 px-4  bg-white'>
-          <div className='fs-5'>
-            <span className='mx-2'> <FaRegArrowAltCircleRight /> </span>
+          <div className='fs-5 d-flex justify-content-between'>
+            <div>
+            <span className='mx-2 cursor-pointer' onClick={handleGoBack}> <FaRegArrowAltCircleRight /> </span>
             <span>الرئيسية - لوحة المعلومات</span>
+            </div>
+            <div className='cursor-pointer' onClick={handleGoForward}><FaRegArrowAltCircleLeft /> </div>
           </div>
         </Row>
         <hr className='m-0'/>
@@ -111,6 +127,9 @@ function App() {
               <Route path='/website/logo/modify'  element={ <EditCarouselItem/> }/>
               <Route path='/website/portalPages'  element={ <PortPages/> }/>
               <Route path='/website/portalPages/add'  element={ <AddPortPage/> }/>
+              <Route path='/website/portalPages/modify'  element={ <EditPortal/> }/>
+              <Route path='/generalReport'  element={ <ReportPage /> }/>
+
               <Route path='/projects/add' element={<AddProject />} />
               <Route path='/projects' element={<AllProjects />} />
               <Route path='/projects/edit' element={<EditProject />} />
@@ -128,12 +147,6 @@ function App() {
                       <Route path='/association/edit/course-schedule' element={<EditSchedule />} />
                       <Route path='/association/edit/themes' element={<Themes />} />
               </Route>
-
-
-
-
-{/*               <Route path='/login'  element={!user? <LoginPage />: <Navigate to="/"/>}/>
-              <Route path='/register'  element={!user? <RegisterPage />: <Navigate to="/"/>}/> */}
             </Routes>
         </Container>
           </Col>

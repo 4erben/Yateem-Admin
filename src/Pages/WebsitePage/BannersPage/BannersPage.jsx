@@ -3,7 +3,8 @@ import { Button, Col, Container, Row } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom';
 import { TiDocumentAdd } from "react-icons/ti";
 import { useDispatch, useSelector } from 'react-redux';
-import { removeBanner } from '../Redux/Slices/bannerSlice';
+import { removeBanner } from '../../../Redux/Slices/bannerSlice';
+
 
 
 export default function BannersPage() {

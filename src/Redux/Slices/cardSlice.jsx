@@ -9,7 +9,7 @@ export const getProducts = createAsyncThunk(
             const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/api/projects`);
             if(!res.ok){
                 const errorData = await res.json();
-                throw new Error(errorData.message  || "An Error Occured")
+                throw new Error(Object.values(errorData)  || "An Error Occured")
             }
             const cards = await res.json();
             return cards;
@@ -44,7 +44,8 @@ export const createNewCard = createAsyncThunk(
             });
             console.log(res);
             if (!res.ok) {
-                throw new Error('Network response was not ok');
+                const errorData = await res.json();
+                throw new Error(Object.values(errorData)  || "An Error Occured")
             }
             const card = await res.json();
             return card;
@@ -72,7 +73,8 @@ export const editCard = createAsyncThunk(
                 });
             console.log(res);
             if (!res.ok) {
-                throw new Error(`HTTP error ! Status: ${res.status}`);
+                const errorData = await res.json();
+                throw new Error(Object.values(errorData)  || "An Error Occured")
             }
             const card = await res.json();
             return card;
@@ -97,7 +99,8 @@ export const removeCard = createAsyncThunk(
                 }
                 });
                 if(!res.ok){
-                    throw new Error(res.status);
+                    const errorData = await res.json();
+                    throw new Error(Object.values(errorData)  || "An Error Occured")
                 }
                 /* const response =  await res.json(); */
               /*   return response; */
@@ -125,6 +128,7 @@ const cardSlice = createSlice({
             state.cards = action.payload;
         })
         .addCase(getProducts.rejected,(state,action)=>{
+            state.err = action.payload
         })
         .addCase(createNewCard.pending,(state,action)=>{
             state.status = "loading"
@@ -134,7 +138,8 @@ const cardSlice = createSlice({
             state.status = "success"
         })
         .addCase(createNewCard.rejected,(state,action)=>{
-            state.status = "failed"
+            state.status = "failed";
+            state.err = action.payload
         })
         .addCase(removeCard.pending,(state,action)=>{
             state.status = "loading"
@@ -144,9 +149,7 @@ const cardSlice = createSlice({
         })
         .addCase(removeCard.rejected,(state,action)=>{
             state.status = "failed";
-            if(action.payload == 404){
-                state.err = "لا يوجد اهداء بهذا الرقم"
-            };
+            state.err = action.payload
         })
     }
 })

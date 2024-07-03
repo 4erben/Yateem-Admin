@@ -46,6 +46,9 @@ a{
 .bg-c-lighter-grey{
   background-color: var(--lighter-grey-color) !important;
 }
+.cursor-pointer{
+  cursor: pointer !important;
+}
 
 .nav-link{
   color: white !important;

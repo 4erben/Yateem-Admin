@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import { IoMdInformationCircle } from "react-icons/io";
 import { useDispatch } from 'react-redux';
-import { createNewBanner } from '../Redux/Slices/bannerSlice';
+import { createNewBanner } from '../../../../Redux/Slices/bannerSlice';
 
 export default function AddCarouselItem() {
   const dispatch = useDispatch();

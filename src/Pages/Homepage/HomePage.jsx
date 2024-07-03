@@ -1,23 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Col, Container, Row} from 'react-bootstrap';
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis ,Tooltip, ResponsiveContainer, Brush} from "recharts";
 import { useSelector } from 'react-redux';
-import TableComponent from '../Components/TableComponent';
+import TableComponent from '../../Components/TableComponent';
+
 
 
 export default function HomePage() {
-  const data = [
-    { date: '2024-06-01', value: 120 },
-    { date: '2024-06-02', value: 130 },
-    { date: '2024-06-03', value: 140 },
-    { date: '2024-06-04', value: 150 },
-    { date: '2024-06-05', value: 160 },
-    { date: '2024-06-06', value: 170 },
-    { date: '2024-06-07', value: 180 },
-    { date: '2024-06-08', value: 190 },
-    { date: '2024-06-09', value: 200 },
-    { date: '2024-06-10', value: 210 }
-  ];
+  useEffect(() => {
+    const error = console.error;
+console.error = (...args) => {
+  if (/defaultProps/.test(args[0])) return;
+  error(...args);
+};
+  }, []);
+
   const chart = useSelector(state=>state.stats.chart);
   const stats = useSelector(state=>state.stats.stats);
 

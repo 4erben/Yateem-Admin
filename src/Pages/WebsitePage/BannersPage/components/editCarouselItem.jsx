@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap';
 import { IoMdInformationCircle } from "react-icons/io";
 import { useDispatch, useSelector } from 'react-redux';
-import { createNewBanner, editBanner } from '../Redux/Slices/bannerSlice';
 import { useLocation } from 'react-router-dom';
+import { editBanner } from '../../../../Redux/Slices/bannerSlice';
 
 export default function EditCarouselItem() {
     const location = useLocation();
