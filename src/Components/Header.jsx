@@ -1,12 +1,14 @@
 import React from 'react'
-import { Container, Dropdown, Nav, NavDropdown, Navbar } from 'react-bootstrap'
+import { Button, Container, Dropdown, DropdownButton, Nav, NavDropdown, Navbar } from 'react-bootstrap'
 import AlarmIcon from './AlarmIcon'
 import { useDispatch, useSelector } from 'react-redux'
 import { switchIcons, switchMobile } from '../Redux/Slices/AppSlice';
-import { logout } from '../Redux/Slices/authSlice';
+import { logOut } from '../Redux/Slices/authSlice';
+import { useNavigate } from 'react-router-dom';
 
 export default function Header() {
-    const userName = useSelector(state=>state.auth.user)
+  const user = useSelector(state=>state.auth.user);
+  const navigate = useNavigate();
     const dispatch = useDispatch();
     const handleSwitchIcons = ()=>{
         dispatch(switchIcons());
@@ -17,7 +19,8 @@ export default function Header() {
 
     }
     const handleLogOut = ()=>{
-      dispatch(logout())
+      dispatch(logOut());
+      navigate("/")
     }
   return (
     <header className='px-0'>
@@ -44,13 +47,13 @@ export default function Header() {
             </Nav.Link>
             <Dropdown>
                 <Dropdown.Toggle id='dropdown-basic'  variant="white" className='text-white'>
-                {userName.name}
+                {user?.name}
                 </Dropdown.Toggle>
                 <Dropdown.Menu className='text-end'>
-                    <Dropdown.Item href="#/action-1">
+                    <Dropdown.Item as="button" >
                     تغيير كلمة المرور
                     </Dropdown.Item>
-                    <Dropdown.Item href="#/action-2" onClick={handleLogOut}>
+                    <Dropdown.Item as="button" className='btn-white' onClick={handleLogOut}>
                     تسجيل الخروج
                     </Dropdown.Item>
             </Dropdown.Menu>

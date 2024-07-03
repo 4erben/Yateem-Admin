@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import {Link} from "react-router-dom";
 import { useState } from "react";
-import { register } from "../Redux/Slices/authSlice";
+import { register } from "../../Redux/Slices/authSlice";
 export default function RegisterPage(){
   const error = useSelector(state=> state.auth.err);
   const isLoading = useSelector(state=> state.auth.loading);

@@ -1,23 +1,27 @@
 import React, { useState } from 'react'
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
-import { editCard } from '../Redux/Slices/cardSlice';
+import { editCard } from '../../Redux/Slices/cardSlice';
 import { IoDocumentTextOutline } from "react-icons/io5";
 import { FaHeart } from "react-icons/fa";
+import { useLocation } from 'react-router-dom';
 
-export default function EditGiftItem() {
+export default function EditProject() {
     const dispatch = useDispatch();
-    const [ id , setId] = useState("");
-    const [title, setTitle] = useState("");
-    const [totalMoney, setTotalMoney] = useState("");
-    const [gained, setGainedMoney] = useState("");
-    const [category, setCategory] = useState("")
-    const [imgSrc, setImageFile] = useState("");
-    const [Sahm1, setSahm1] = useState("");
-    const [Sahm2, setSahm2] = useState("");
-    const [Sahm3, setSahm3] = useState("");
+    const location = useLocation();
+    const baseURL = `${import.meta.env.VITE_REACT_APP_API_URL}`;
+    const [ id , setId] = useState(location.state.card.id);
+    const [title, setTitle] = useState(location.state.card.title);
+    const [totalMoney, setTotalMoney] = useState(location.state.card.totalMoney);
+    const [gained, setGainedMoney] = useState(location.state.card.gained);
+    const [category, setCategory] = useState(location.state.card.category);
+    const [imgSrc, setImageFile] = useState(null);
+    const [Sahm1, setSahm1] = useState(location.state.card.Sahm1);
+    const [Sahm2, setSahm2] = useState(location.state.card.Sahm2);
+    const [Sahm3, setSahm3] = useState(location.state.card.Sahm3);
     const handleOnSubmit = (e)=>{
         e.preventDefault();
+        if(location.state.id){setId(location.state.id)}
         const request= {}
         request.id = id;
         if(title){request.title = title};
@@ -29,6 +33,7 @@ export default function EditGiftItem() {
         if(Sahm3){request.Sahm3 = Sahm3};
         dispatch(editCard(request));
     }
+    console.log(location.state.card.imgSrc);
   return (
     <Container fluid>
         <Container fluid className='bg-white rounded py-3 px-4 border bordr-2'>
@@ -38,7 +43,7 @@ export default function EditGiftItem() {
             <Row className='mt-5'>
                 <Form onSubmit={handleOnSubmit}>
                     <Row>
-                        <Form.Control placeholder='ادخل رقم الاهداء' type='text'  onChange={(e)=>{setId(e.target.value)}} />
+                        <Form.Control placeholder='ادخل رقم الاهداء' type='text' value={id}  onChange={(e)=>{setId(e.target.value)}} />
                     </Row>
                     <Row>
                         {/* Right Column */}
@@ -56,7 +61,7 @@ export default function EditGiftItem() {
                             <Form.Label className='text-nowrap'>العنوان علي المنصة<span className='text-danger fw-bold'>*</span></Form.Label>
                         </Col>
                         <Col lg={8} className='d-flex jusitfy-content'>
-                            <Form.Control  type='text' name='title'  onChange={(e)=>{setTitle(e.target.value)}} />
+                            <Form.Control  type='text' name='title' value={title} onChange={(e)=>{setTitle(e.target.value)}} />
                         </Col>
                     </Form.Group>
                     <Form.Group className='row my-3 align-items-center'>
@@ -64,7 +69,7 @@ export default function EditGiftItem() {
                             <Form.Label className='text-nowrap'>المبلغ المطلوب<span className='text-danger fw-bold'>*</span></Form.Label>
                         </Col>
                         <Col lg={8} className='d-flex jusitfy-content'>
-                            <Form.Control  type='number' name='totalMoney'  onChange={(e)=>{setTotalMoney(e.target.value)}} />
+                            <Form.Control  type='number' name='totalMoney' value={totalMoney}  onChange={(e)=>{setTotalMoney(e.target.value)}} />
                         </Col>
                     </Form.Group>
                     <Form.Group className='row my-3 align-items-center'>
@@ -72,7 +77,7 @@ export default function EditGiftItem() {
                             <Form.Label className='text-nowrap'>التصنيف<span className='text-danger fw-bold'>*</span></Form.Label>
                         </Col>
                         <Col lg={8} className='d-flex jusitfy-content'>
-                        <select className='form-control' onChange={(e)=>{setCategory(e.target.value)}} >
+                        <select className='form-control' value={category} onChange={(e)=>{setCategory(e.target.value)}} >
                             <option value="مباني">مباني</option>
                             <option value="سقيا الماء">سقيا الماء</option>
                             <option value="كفالات">كفالات</option>
@@ -97,15 +102,19 @@ export default function EditGiftItem() {
                         <Form.Label>اضافة تبرعات سابقة</Form.Label>
                         </Col>
                         <Col lg={8}>
-                            <Form.Control  type='number' name='gainedMoney'  onChange={(e)=>{setGainedMoney(e.target.value)}} />
+                            <Form.Control  type='number' name='gainedMoney' value={gained}  onChange={(e)=>{setGainedMoney(e.target.value)}} />
                         </Col>
                     </Form.Group>
                     <Form.Group className='row my-3 align-items-center'>
-                        <Col lg={4} className=''>
+                        <Col lg={2} className=''>
                         <Form.Label>الصورة الرمزية</Form.Label>
                         </Col>
+                        <Col lg={2}>
+                            <img src={baseURL+location.state?.card.imgSrc} className='img-fluid' style={{width: "50px"}} />
+                        </Col>
                         <Col lg={8}>
-                            <Form.Control  type='file' name='img'  onChange={(e)=>{setImageFile(e.target.files[0])}} />
+                            <Form.Control  type='file' name='img' onChange={(e)=>{setImageFile(e.target.files[0])}} />
+
                         </Col>
                     </Form.Group>
 
@@ -117,7 +126,7 @@ export default function EditGiftItem() {
                             <Form.Label>اسم السهم</Form.Label>
                         </Col>
                         <Col lg={8}>
-                            <Form.Control  type='text' name='Sahm1'  onChange={(e)=>{setSahm1(e.target.value)}} />
+                            <Form.Control  type='text' name='Sahm1' value={Sahm1}  onChange={(e)=>{setSahm1(e.target.value)}} />
                     </Col>
                     </Form.Group>
                     </Col>
@@ -127,7 +136,7 @@ export default function EditGiftItem() {
                             <Form.Label>اسم السهمين</Form.Label>
                         </Col>
                         <Col lg={8}>
-                            <Form.Control  type='text' name='Sahm2'  onChange={(e)=>{setSahm2(e.target.value)}} />
+                            <Form.Control  type='text' name='Sahm2' value={Sahm2}  onChange={(e)=>{setSahm2(e.target.value)}} />
                     </Col>
                     </Form.Group>
                     </Col>
@@ -137,7 +146,7 @@ export default function EditGiftItem() {
                             <Form.Label>اسم  ثلاث اسهم</Form.Label>
                         </Col>
                         <Col lg={8}>
-                            <Form.Control  type='text' name='Sahm3'  onChange={(e)=>{setSahm3(e.target.value)}} />
+                            <Form.Control  type='text' name='Sahm3' value={Sahm3}  onChange={(e)=>{setSahm3(e.target.value)}} />
                     </Col>
                     </Form.Group>
                     </Col>

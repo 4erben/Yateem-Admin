@@ -17,7 +17,7 @@ export const login = createAsyncThunk(
             if (!res.ok) {
                 const errorData = await res.json();
                 console.log("error" , errorData);
-                throw new Error(errorData.error  || "An Error Occured");
+                throw new Error(Object.values(errorData) || "An Error Occured");
             }
             const auth = await res.json();
             console.log(auth);
@@ -48,7 +48,7 @@ export const register = createAsyncThunk(
             });
             if (!res.ok) {
                 const errorData = await res.json();
-                throw new Error(errorData.error  || "An Error Occured")
+                throw new Error(Object.values(errorData)  || "An Error Occured")
             }
             const data = await res.json();
             if(res.ok){
@@ -63,13 +63,7 @@ export const register = createAsyncThunk(
 
 
 
-export const logout = createAsyncThunk(
-    "auth/logout",
-    async(user)=>{
-        localStorage.removeItem("user");
-        localStorage.removeItem("token");
-    }
-)
+
 
 
 
@@ -90,9 +84,11 @@ const authSlice = createSlice({
             state.user = admin;
             state.token = token;
         },
-        setLogOut:(state,action)=>{
+        logOut:(state,action)=>{
             state.user = null;
             state.token = null;
+            localStorage.removeItem("user");
+            localStorage.removeItem("token");
         },
         setUser:(state,action)=>{
             state.user = action.payload;
@@ -110,6 +106,7 @@ const authSlice = createSlice({
             localStorage.setItem("token",JSON.stringify(action.payload.token));
             localStorage.setItem("user",JSON.stringify(action.payload.admin));
             state.success = true
+            state.err = null
         })
         .addCase(login.rejected,(state,action)=>{
             state.loading = false
@@ -129,19 +126,10 @@ const authSlice = createSlice({
             state.loading = false;
             state.err= action.error.message;
         })
-        .addCase(logout.pending,(state,action)=>{
-
-        })
-        .addCase(logout.fulfilled,(state,action)=>{
-            state.user = null
-        })
-        .addCase(logout.rejected,(state,action)=>{
-            
-        })
     }
 })
 
-export const {setUser , setCredentials , setLogOut} =authSlice.actions;
+export const {setUser , setCredentials , logOut} =authSlice.actions;
 export default authSlice.reducer;
 
 export const selectCurrentUser = (state) =>state.auth.user;

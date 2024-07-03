@@ -74,20 +74,16 @@ const websiteMenu = [
 ]
 const projectsMenu = [
     {
+        title: "المشروعات الحالية",
+        icon :  <HiDocumentRemove />,
+        link : "/projects"
+    },
+    {
         title: "اضافة مشروع",
         icon: <HiDocumentAdd />,
-        link : "/carts/add"
+        link : "/projects/add"
     },
-    {
-        title: "حذف مشروع ",
-        icon :  <HiDocumentRemove />,
-        link : "/carts/remove"
-    },
-    {
-        title: "تعديل مشروع",
-        icon :  <MdEditDocument />,
-        link : "/carts/edit"
-    }
+    
 ]
 const giftsMenu = [
     {

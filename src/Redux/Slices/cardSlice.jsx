@@ -120,14 +120,11 @@ const cardSlice = createSlice({
     extraReducers(builder){
         builder
         .addCase(getProducts.pending,(state,action)=>{
-            state.status = "loading"
         })
         .addCase(getProducts.fulfilled,(state,action)=>{
             state.cards = action.payload;
-            state.status = "success"
         })
         .addCase(getProducts.rejected,(state,action)=>{
-            state.status = "failed"
         })
         .addCase(createNewCard.pending,(state,action)=>{
             state.status = "loading"

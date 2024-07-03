@@ -3,23 +3,21 @@ import { Alert, Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { IoDocumentTextOutline } from "react-icons/io5";
 import { FaHeart } from "react-icons/fa";
 import { useDispatch , useSelector } from 'react-redux';
-import { createNewCard } from '../Redux/Slices/cardSlice';
+import { createNewCard } from '../../Redux/Slices/cardSlice';
 
-export default function AddGiftItem() {
-/*     const [name, setName] = useState(" "); */
+export default function AddProject() {
+
     const [title, setTitle] = useState(" ");
     const [totalMoney, setTotalMoney] = useState(0);
     const [gained, setGainedMoney] = useState(0);
     const [category, setCategory] = useState(" ");
-/*     const [arrangeNo, setArrangeNo] = useState(0); */
+
     const [img, setImageFile] = useState(null);
-/*     const [imgSrc, setImgSrc] = useState(" "); */
+
     const [Sahm1, setSahm1] = useState(" ");
     const [Sahm2, setSahm2] = useState(" ");
     const [Sahm3, setSahm3] = useState(" ");
-/*     const [startDate, setStartDate] = useState(null);
-    const [endDate, setEndDate] = useState(null);
- */
+
     const dispatch = useDispatch();
     const status = useSelector(state=>state.card.status);
     const isLoading = useSelector(state=>state.card.isLoading);
@@ -31,7 +29,7 @@ export default function AddGiftItem() {
     <Container fluid>
         <Container fluid className='bg-white rounded py-3 px-4 border bordr-2'>
             <Row>
-                <h6>اضافة اهداء</h6>
+                <h6>اضافة مشروع</h6>
             </Row>
             <Row className='mt-5'>
                 <Form onSubmit={handleOnSubmit}>
@@ -73,17 +71,9 @@ export default function AddGiftItem() {
                             <option value="كفالات">كفالات</option>
                             <option value="الفقراء">الفقراء</option>
                         </select>
-                            {/* <Form.Control  type='text' name='category'  onChange={(e)=>{setCategory(e.target.value)}} required/> */}
                         </Col>
                     </Form.Group>
-                    {/* <Form.Group className='row my-3 align-items-center'>
-                        <Col lg={4}>
-                            <Form.Label className='text-nowrap'>الترتيب</Form.Label>
-                        </Col>
-                        <Col lg={8} className='d-flex jusitfy-content'>
-                            <Form.Control  type='number' name='no' onChange={(e)=>{setArrangeNo(e.target.value)}} disabled/>
-                        </Col>
-                    </Form.Group> */}
+
                     </Col>
                     {/* Left Column */}
                     <Col lg={6}>
@@ -94,22 +84,7 @@ export default function AddGiftItem() {
                         </div>
                         <hr />
                     </Row>
-                    {/* <Form.Group className='row my-3 align-items-center'>
-                        <Col lg={4} className=''>
-                        <Form.Label>تاريخ البداية</Form.Label>
-                        </Col>
-                        <Col lg={8}>
-                            <Form.Control  type='date' name='startDate'  onChange={(e)=>{setStartDate(e.target.value)}} disabled/>
-                        </Col>
-                    </Form.Group> */}
-                    {/* <Form.Group className='row my-3 align-items-center'>
-                        <Col lg={4} className=''>
-                        <Form.Label>تاريخ الاغلاق</Form.Label>
-                        </Col>
-                        <Col lg={8}>
-                            <Form.Control  type='date' name='endDate'  onChange={(e)=>{setEndDate(e.target.value)}} disabled/>
-                        </Col>
-                    </Form.Group> */}
+    
                     <Form.Group className='row my-3 align-items-center'>
                         <Col lg={4} className=''>
                         <Form.Label>اضافة تبرعات سابقة</Form.Label>
@@ -126,15 +101,6 @@ export default function AddGiftItem() {
                             <Form.Control  type='file' name='img'  onChange={(e)=>{setImageFile(e.target.files[0])}} required/>
                         </Col>
                     </Form.Group>
-                   {/*  <Form.Group className='row my-3 align-items-center justify-content-center'>
-                        <Col lg={4} className=''>
-                            <Form.Label>لينك الصورة</Form.Label>
-                        </Col>
-                        <Col lg={8}>
-                            <Form.Control  type='text' name='imgSrc'  onChange={(e)=>{setImgSrc(e.target.value)}} disabled/>
-                        </Col>
-                    </Form.Group> */}
-
                     </Col>
                     </Row>
                     <Row className='mb-3 justify-content-center'>

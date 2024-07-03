@@ -17,7 +17,7 @@ import { BsFillPeopleFill } from "react-icons/bs";
 import { LiaComments } from "react-icons/lia";
 import NavItemMenu from './NavItem';
 import { switchIcons, switchMobile } from '../Redux/Slices/AppSlice';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { IoPeopleSharp, IoPhonePortraitSharp, IoQrCodeOutline, IoSettings } from 'react-icons/io5';
 import { PiArticle } from "react-icons/pi";
 import menus from "../data/data.jsx";
@@ -26,6 +26,7 @@ export default function Sidebar() {
     const { websiteMenu , projectsMenu  , giftsMenu , donationsMenu , transfersMenu , donorsMenu , commentsMenu , messagesMenu , adsMenu , reqMenu , supportMenu , associationMenu } = menus;
     const isIconsOn = useSelector(state=>state.app.isIconOn);
     const isMobileOn = useSelector(state=>state.app.isMobileOn);
+
     const dispatch = useDispatch();
     const [isExpanded , setExpanded] = useState(false);
     const handleExpanded = ()=>{
@@ -35,6 +36,7 @@ export default function Sidebar() {
         dispatch(switchMobile());
         dispatch(switchIcons());
     }
+
   return (
     <Col lg={3} className={`px-0 d-md-block d-none sidebar  ${isIconsOn?"toggled":""} ${isMobileOn?"mobile":""} ${isExpanded?"expanded":""}`}>
     <Container fluid className='text-white px-0'>
