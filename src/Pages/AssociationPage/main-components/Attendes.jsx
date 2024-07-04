@@ -8,8 +8,8 @@ import { IoPhonePortraitSharp } from 'react-icons/io5'
 export default function Attendes() {
   return (
     <Row>
-      <div class="card-body">
-        <div class="card card-body p-2">
+      <div className="card-body">
+        <div className="card card-body p-2">
           <Row className='align-items-center py-3'>
             <Col className="col-1" ><FaUserTie className='text-muted opacity-25' size={50} /></Col>
             <Col className='col-11'>
@@ -33,8 +33,8 @@ export default function Attendes() {
           </Row>        
         </div>
       </div>
-      <div class="card-body">
-        <div class="card card-body p-2">
+      <div className="card-body">
+        <div className="card card-body p-2">
           <Row className='align-items-center py-3'>
             <Col className="col-1" ><FaUserCheck className='text-muted opacity-25' size={50} /></Col>
             <Col className='col-11'>
@@ -53,8 +53,8 @@ export default function Attendes() {
           </Row>        
         </div>
       </div>
-      <div class="card-body">
-        <div class="card card-body p-2">
+      <div className="card-body">
+        <div className="card card-body p-2">
           <Row className='align-items-center py-3'>
             <Col className="col-1" ><FaUserLock className='text-muted opacity-25' size={50} /></Col>
             <Col className='col-11'>
@@ -73,8 +73,8 @@ export default function Attendes() {
           </Row>        
         </div>
       </div>
-      <div class="card-body">
-        <div class="card card-body p-2">
+      <div className="card-body">
+        <div className="card card-body p-2">
           <Row className='align-items-center py-3'>
             <Col className="col-1" ><FaUserLock className='text-muted opacity-25' size={50} /></Col>
             <Col className='col-11'>

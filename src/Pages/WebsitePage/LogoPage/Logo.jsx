@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap';
 import { IoMdInformationCircle } from "react-icons/io";
 import { useDispatch, useSelector } from 'react-redux';
-import { editLogo } from '../../Redux/Slices/logoSlice';
+import { editLogo } from '../../../Redux/Slices/logoSlice';
 
 export default function Logo() {
     const isLoading = useSelector(state=>state.banner.isLoading);

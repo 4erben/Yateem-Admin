@@ -49,28 +49,28 @@ export default function Sidebar() {
             <div className='nav-item-header mx-4 fs-6 text-secondary fw-bold'>
                 {!isIconsOn?<i className="fa-solid fa-ellipsis"></i>:<span>القائمة</span>}
             </div>
-            <Link className='nav-item' to="/">
+            <Link className='nav-item' to="/" state={{itemName: "الرئيسية",pageName:"الرئيسية"}}>
                <span className='nav-item-icon'> <IoMdHome className=''/></span>
                <span className='nav-item-text'> لوحة المعلومات  </span>
             </Link>
-            <NavItemMenu title="جمعيتي" titleIcon={<FaBuilding />} itemsMenu ={associationMenu}/>
+            <NavItemMenu title="جمعيتي" titleIcon={<FaBuilding />} itemsMenu ={associationMenu} />
             <NavItemMenu title="المشاريع و الانشطة" titleIcon={<CiHeart/>} itemsMenu ={projectsMenu}/>
             <NavItemMenu title="الاهداءات" titleIcon={<CiGift/>} itemsMenu ={giftsMenu}/>
             <NavItemMenu title="التبرعات" titleIcon={<BiSolidCoinStack/>} itemsMenu ={donationsMenu}/>
             <NavItemMenu title="ادارة التحويلات" titleIcon={<BiSolidCoinStack/>} itemsMenu ={transfersMenu}/>
             
-            <Link className='nav-item' to="/generalReport">
+            <Link className='nav-item' to="/generalReport" state={{itemName: "الاحصائيات",pageName:"الاحصائيات"}}>
                <span className='nav-item-icon'> <MdOutlineQueryStats /></span>
                <span className='nav-item-text'> الاحصائيات </span>
             </Link>
-            <Link className='nav-item' to="/donations/cart">
+            <Link className='nav-item' to="/donations/cart" state={{itemName: "السلات المتروكة",pageName:"السلات المتروكة"}}>
                <span className='nav-item-icon'> <CiShoppingCart /></span>
                <span className='nav-item-text'> السلات المتروكة</span>
             </Link>
             <NavItemMenu title="المتبرعين" titleIcon={<BsFillPeopleFill />} itemsMenu ={donorsMenu}/>
             <NavItemMenu title="تعليقات و تقيمات" titleIcon={<FaCommentAlt />} itemsMenu ={commentsMenu}/>
             <NavItemMenu title="روابط الاعلانات" titleIcon={<IoMdLink />} itemsMenu ={adsMenu}/>
-            <Link className='nav-item' to="/settings">
+            <Link className='nav-item' to="/settings" state={{pageName: "الاعدادات" ,itemName:"الاعدادات"} } >
                <span className='nav-item-icon'> <IoSettings /></span>
                <span className='nav-item-text'> الاعدادات</span>
             </Link>

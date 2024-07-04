@@ -234,12 +234,12 @@ const associationMenu = [
     {
         title: "بيانات الجمعية",
         icon: <MdOutlineArticle />,
-        link : "/association"
+        link : "/association",
     },
     {
         title: "تعديل بياناتي",
         icon: <FaRegEdit />,
-        link : "/association/edit"
+        link : "/association/edit",
     }
 ]
 

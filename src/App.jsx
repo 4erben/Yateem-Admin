@@ -17,7 +17,7 @@ import { getProducts } from './Redux/Slices/cardSlice';
 import { getChart, getPayments, getStats } from './Redux/Slices/statsSlice';
 import PortPages from './Pages/WebsitePage/PortalPage/PortalPages.jsx';
 import AddPortPage from './Pages/WebsitePage/PortalPage/components/AddPortPage.jsx';
-import Logo from './Pages/LogoPage/Logo';
+import Logo from './Pages/WebsitePage/LogoPage/Logo';
 import Associtation from './Pages/AssociationPage/associtation';
 import Overview from './Pages/AssociationPage/main-components/Overview';
 import Attendes from './Pages/AssociationPage/main-components/Attendes';
@@ -62,6 +62,10 @@ function App() {
   const dispatch = useDispatch();
   const user = useSelector(state=>state.auth.user);
   const localUser = JSON.parse(localStorage.getItem("user"));
+
+  useEffect(()=>{
+    document.title = location.state?.itemName;
+  },[location])
   useEffect(()=>{
     
     if(!user && localUser){
@@ -82,7 +86,6 @@ function App() {
   const handleGoForward= ()=> {
     navigate(+1);
   }
-
 
 
 
@@ -116,7 +119,7 @@ function App() {
           <div className='fs-5 d-flex justify-content-between'>
             <div>
             <span className='mx-2 cursor-pointer' onClick={handleGoBack}> <FaRegArrowAltCircleRight /> </span>
-            <span>الرئيسية - لوحة المعلومات</span>
+            <span>{location.state?.itemName}</span>
             </div>
             <div className='cursor-pointer' onClick={handleGoForward}><FaRegArrowAltCircleLeft /> </div>
           </div>
@@ -125,9 +128,9 @@ function App() {
         <Row className='py-3 px-4 align-items-center bg-c-lighter-grey mx-0'>
           <div >
             <span><FaHome/>  </span>
-            <Link className='' to="/">الرئيسية</Link>
+            <span className='' to={`${location.pathname}`} state={location.state}>{location.state?.pageName}</span>
             <span className='mx-2'>/</span> 
-            <span className='fs-7'> {location.pathname== "/"?"لوحة المعلومات":"بانر الموقع الاكتروني"}</span>
+            <span className='fs-7'> {location.state?.subName}</span>
           </div>
         </Row>
         <hr className='m-0'/>

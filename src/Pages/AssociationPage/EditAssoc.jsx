@@ -17,15 +17,15 @@ export default function Associtation() {
     <Container fluid  className='editassoc-page py-2 '> 
         <Row className='mx-0 px-0'> 
             <Col lg={3} md={3} className=''>
-            <div class="card">
-                    <div class="card-body text-center">
-                        <div class="card-img-actions d-inline-block mb-3">
+            <div className="card">
+                    <div className="card-body text-center">
+                        <div className="card-img-actions d-inline-block mb-3">
                             <a href="https://jod.azureedge.net/all/441009.jpeg"  target="_blank" className="" data-popup="lightbox" rel="group">
-                                <img class="img-fluid " src="https://jod.azureedge.net/all/441009.jpeg" width="170" height="170" alt=""/>
+                                <img className="img-fluid " src="https://jod.azureedge.net/all/441009.jpeg" width="170" height="170" alt=""/>
                             </a>
                         </div>
-                        <h6 class="font-weight-black  mb-0 font-size-lg">وقف الضياء بمكة المكرمة</h6>
-                        <span class="d-block text-muted font-size-sm">رقم ترخيص : 4161</span>
+                        <h6 className="font-weight-black  mb-0 font-size-lg">وقف الضياء بمكة المكرمة</h6>
+                        <span className="d-block text-muted font-size-sm">رقم ترخيص : 4161</span>
                     </div>
                 </div>
             </Col>
@@ -39,10 +39,10 @@ export default function Associtation() {
                     </div>
                     <div className="nav-tabs-responsive bg-light border-top ">
                         <div className="nav nav-tabs nav-tabs-bottom flex-nowrap mb-0  overflow-x-auto">
-                            <Link to="" className={`nav-link nav-item ${activeIndex === 0? "onActive":""}`} data-toggle="tab" onClick={()=>handleClick(0)}><FiFileText size={18} /> البيانات الأساسية</Link>
-                            <Link to="course-attendes" className={`nav-link nav-item ${activeIndex === 1? "onActive":""}`} data-toggle="tab" onClick={()=>handleClick(1)}><GoMention size={18} /> بيانات التواصل</Link>
-                            <Link to="course-schedule" className={`nav-link nav-item ${activeIndex === 2? "onActive":""}`} data-toggle="tab" onClick={()=>handleClick(2)}> <CiCreditCard1 size={18} /> الحسابات البنكية</Link>
-                            <Link to="course-cats" className={`nav-link nav-item ${activeIndex === 3? "onActive":""}`} data-toggle="tab" onClick={()=>handleClick(3)}><CiHeart size={18} /> أقسام التبرعات </Link>
+                            <Link state={{itemName:"جمعيتي" , pageName:"تعديل بياناتي", subName: "البيانات الاساسية"}} to="" className={`nav-link nav-item ${activeIndex === 0? "onActive":""}`} data-toggle="tab" onClick={()=>handleClick(0)}><FiFileText size={18} /> البيانات الأساسية</Link>
+                            <Link state={{itemName:"جمعيتي" , pageName:"تعديل بياناتي", subName: "بيانات التواصل"}} to="course-attendes" className={`nav-link nav-item ${activeIndex === 1? "onActive":""}`} data-toggle="tab" onClick={()=>handleClick(1)}><GoMention size={18} /> بيانات التواصل</Link>
+                            <Link state={{itemName:"جمعيتي" , pageName:"تعديل بياناتي", subName: "الحسابات البنكية"}} to="course-schedule" className={`nav-link nav-item ${activeIndex === 2? "onActive":""}`} data-toggle="tab" onClick={()=>handleClick(2)}> <CiCreditCard1 size={18} /> الحسابات البنكية</Link>
+                            <Link state={{itemName:"جمعيتي" , pageName:"تعديل بياناتي", subName: "اقسام التبرع"}} to="course-cats" className={`nav-link nav-item ${activeIndex === 3? "onActive":""}`} data-toggle="tab" onClick={()=>handleClick(3)}><CiHeart size={18} /> أقسام التبرعات </Link>
                           {/*   <Link to="themes" className={`nav-link nav-item ${activeIndex === 4? "onActive":""}`} data-toggle="tab" onClick={()=>handleClick(4)}><IoIosColorPalette size={18} /> الواجهة</Link> */}
                         </div>
                     </div>

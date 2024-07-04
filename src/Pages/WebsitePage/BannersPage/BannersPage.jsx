@@ -12,7 +12,7 @@ export default function BannersPage() {
     const navigate = useNavigate();
     const banners = useSelector(state=>state.banner.banners);
     const handleModify =(id)=>{
-        navigate("modify" , {state:{id}})
+        navigate("modify" , {state:{id:id,itemName: "الموقع الاكتروني",pageName:"البانر الرئيسي" , subName: "تعديل بانر"}})
     }
     const handleRemove = (id)=>{
         dispatch(removeBanner({id:id}))
@@ -25,7 +25,7 @@ export default function BannersPage() {
                 <span>بانر الموقع الاكتروني</span>
             </Col>
             <Col className='col-4 d-flex justify-content-between '>
-                <Link to="add" className=' mx-1 btn btn-info text-white'>
+                <Link to="add" className=' mx-1 btn btn-info text-white' state={{itemName: "الموقع الاكتروني",pageName:"البانر الرئيسي" , subName: "اضافة بانر"}}>
                 <TiDocumentAdd className='fs-5'/>
                 <span className='mx-1'>اضافة بانر</span>
                 </Link>

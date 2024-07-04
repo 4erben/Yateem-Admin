@@ -3,16 +3,16 @@ import { MdOutlineAccountBalanceWallet } from 'react-icons/md'
 
 export default function Schedule() {
   return (
-    <div class="card-body">
-      <div class="form-group">
-        <p class="text-primary ">
+    <div className="card-body">
+      <div className="form-group">
+        <p className="text-primary ">
           <MdOutlineAccountBalanceWallet />
           <span className='mx-2'>الحسابات البنكية</span>
         </p>
-            <div class="table-responsive">
-                  <table id="tblShares" class="table table-xs table-striped table-bordered table-hover ">
+            <div className="table-responsive">
+                  <table id="tblShares" className="table table-xs table-striped table-bordered table-hover ">
                     <thead>
-                      <tr class="bg-dark">
+                      <tr className="bg-dark">
                         <th>#</th>
                         <th>البنك</th>
                         <th>الحساب</th>

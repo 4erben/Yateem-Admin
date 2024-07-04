@@ -1,4 +1,5 @@
 import React from 'react'
+import { Button } from 'react-bootstrap'
 import { CiWallet } from 'react-icons/ci'
 
 export default function EditSchedule() {
@@ -33,20 +34,8 @@ export default function EditSchedule() {
                 <th>SA0680000</th>
                 <td>
                   <div className="list-icons d-flex">
-                    <a 
-                      href="javascript:LoadBankAccountForm('1772')" 
-                      className="btn btn-success mx-2 text-white" 
-                      title="تعديل"
-                    >
-                      تعديل
-                    </a>
-                    <a 
-                      href="javascript:DeleteBankAccount('1772')" 
-                      className="btn btn-danger mx-2 text-white" 
-                      title="حذف"
-                    >
-                      حذف
-                    </a>
+                    <Button className="btn btn-success mx-2 text-white">تعديل</Button>
+                    <Button className="btn btn-danger mx-2 text-white" >حذف </Button>
                   </div>
                 </td>
               </tr>

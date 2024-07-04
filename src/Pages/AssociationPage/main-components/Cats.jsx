@@ -2,12 +2,12 @@ import React from 'react'
 
 export default function Cats() {
   return (
-    <div class="card-body">
-    <div class="form-group">
-        <div class="table-responsive">
-            <table id="tblShares" class="table table-xs table-striped table-bordered table-hover ">
+    <div className="card-body">
+    <div className="form-group">
+        <div className="table-responsive">
+            <table id="tblShares" className="table table-xs table-striped table-bordered table-hover ">
                 <thead>
-                    <tr class="bg-undefined">
+                    <tr className="bg-undefined">
                         <th>#</th>
                         <th>الاسم</th>
                         <th>رابط خارجي</th>
@@ -23,7 +23,7 @@ export default function Cats() {
                                 </th>
                                 <th>0</th>
                                 <th>
-                                        <span class="badge-2 bg-success">مفعل </span>
+                                        <span className="badge-2 bg-success">مفعل </span>
                                 </th>
                             </tr>
                             <tr>
@@ -33,7 +33,7 @@ export default function Cats() {
                                 </th>
                                 <th>0</th>
                                 <th>
-                                        <span class="badge-2 bg-success">مفعل </span>
+                                        <span className="badge-2 bg-success">مفعل </span>
                                 </th>
                             </tr>
                             <tr>
@@ -43,7 +43,7 @@ export default function Cats() {
                                 </th>
                                 <th>0</th>
                                 <th>
-                                        <span class="badge-2 bg-success">مفعل </span>
+                                        <span className="badge-2 bg-success">مفعل </span>
                                 </th>
                             </tr>
                             <tr>
@@ -53,7 +53,7 @@ export default function Cats() {
                                 </th>
                                 <th>0</th>
                                 <th>
-                                        <span class="badge-2 bg-success">مفعل </span>
+                                        <span className="badge-2 bg-success">مفعل </span>
                                 </th>
                             </tr>
                             <tr>
@@ -63,7 +63,7 @@ export default function Cats() {
                                 </th>
                                 <th>0</th>
                                 <th>
-                                        <span class="badge-2 bg-success">مفعل </span>
+                                        <span className="badge-2 bg-success">مفعل </span>
                                 </th>
                             </tr>
                 </tbody>

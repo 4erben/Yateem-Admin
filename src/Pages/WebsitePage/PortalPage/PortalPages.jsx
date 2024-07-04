@@ -8,7 +8,7 @@ export default function PortalPages({data}) {
     data = [ {id : 1, title:"asdasd"}];
     const navigate = useNavigate();
     const handleModify = (data)=>{
-        navigate("modify",{state:{data}})
+        navigate("modify",{state:{data:data,itemName: "الموقع الاكتروني",pageName:"صفحات الموقع" , subName: "تعديل صفحة"}})
     }
   return (
     <Container fluid className='banner'>
@@ -18,9 +18,9 @@ export default function PortalPages({data}) {
             <span>صفحات الموقع الاكتروني</span>
         </Col>
         <Col className='col-4 d-flex justify-content-between '>
-            <Link to="add" className=' mx-1 btn btn-info text-white'>
+            <Link to="add" className=' mx-1 btn btn-info text-white' state={{itemName: "الموقع الاكتروني",pageName:"صفحات الموقع" , subName: "اضافة صفحة"}}>
             <TiDocumentAdd className='fs-5'/>
-            <span className='mx-1'>اضافة بانر</span>
+            <span className='mx-1'>اضافة صفحة للموقع</span>
             </Link>
         </Col>
     </div>
