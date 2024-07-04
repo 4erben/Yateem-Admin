@@ -10,10 +10,11 @@ import { HiDocumentRemove } from "react-icons/hi";
 import { MdArticle, MdEditDocument, MdOutlineArticle, MdOutlineQueryStats } from "react-icons/md";
 import { CiHeart } from "react-icons/ci";
 import { BiSolidCoinStack } from "react-icons/bi";
-import { BsFillPeopleFill } from "react-icons/bs";
+import { BsDatabaseFillDown, BsFillPeopleFill } from "react-icons/bs";
 import { LiaComments } from "react-icons/lia";
 import { IoPhonePortraitSharp, IoQrCodeOutline, IoSettings } from 'react-icons/io5';
 import { RxIconjarLogo } from "react-icons/rx";
+import { ImCoinPound } from "react-icons/im";
 
 const websiteMenu = [
     {
@@ -111,19 +112,29 @@ const donationsMenu = [
     {
         title: "تقرير التبرعات التفصيلي",
         icon :  <FaViacoin />,
-        link : "/donations/details"
+        link : "/donations/listDonationDetails"
     },
     {
         title: "تقرير المشرف المالي",
         icon :  <CiBitcoin />,
-        link : "/donations/financial"
-    }
+        link : "/donations/financialReport"
+    },
+    {
+        title: "الاستقطاعات",
+        icon :  <ImCoinPound />,
+        link : "/donations/billsDeduction"
+    },
+    {
+        title: "التقارير المطلوبة",
+        icon :  <BsDatabaseFillDown />,
+        link : "/donations/requiredReports"
+    },
 ]
 const transfersMenu = [
     {
         title: "ادارة التحويلات",
         icon: <FaFolder />,
-        link : "/transfers"
+        link : "/donationTransfers"
     },
 ]
 const donorsMenu = [

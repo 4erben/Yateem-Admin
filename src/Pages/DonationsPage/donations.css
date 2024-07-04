@@ -1,0 +1,9 @@
+.financialReport {
+    .row{
+        padding: 10px 10px !important;
+    }
+}
+
+.tblTransfers{
+    overflow-x: auto !important;
+}

@@ -38,6 +38,12 @@ import EditCarouselItem from './Pages/WebsitePage/BannersPage/components/editCar
 import HomePage from './Pages/Homepage/HomePage.jsx';
 import EditPortal from './Pages/WebsitePage/PortalPage/components/EditPortal.jsx';
 import ReportPage from './Pages/generalReportPage/ReportPage.jsx';
+import DonationsTransfers from './Pages/DonationsTransfersPage/Donations.jsx';
+import Donations from './Pages/DonationsPage/Donations.jsx';
+import ListDonationDetails from './Pages/DonationsPage/ListDetails.jsx';
+import FinancialReport from './Pages/DonationsPage/FinancialReport.jsx';
+import Deductions from './Pages/DonationsPage/Deductions.jsx';
+import RequiredReports from './Pages/DonationsPage/RequiredReports.jsx';
 
 
 function App() {
@@ -129,7 +135,13 @@ function App() {
               <Route path='/website/portalPages/add'  element={ <AddPortPage/> }/>
               <Route path='/website/portalPages/modify'  element={ <EditPortal/> }/>
               <Route path='/generalReport'  element={ <ReportPage /> }/>
-
+              <Route path='/donationTransfers'  element={ <DonationsTransfers /> }/>
+              <Route path='/donations'  element={ <Donations/> }/>
+              <Route path='/donations/listDonationDetails'  element={ <ListDonationDetails/> }/>
+              <Route path='/donations/financialReport'  element={ <FinancialReport/> }/>
+              <Route path='/donations/billsDeduction'  element={ <Deductions/> }/>
+              <Route path='/donations/requiredReports'  element={ <RequiredReports/> }/>
+            
               <Route path='/projects/add' element={<AddProject />} />
               <Route path='/projects' element={<AllProjects />} />
               <Route path='/projects/edit' element={<EditProject />} />

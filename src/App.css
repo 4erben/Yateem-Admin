@@ -32,6 +32,11 @@ a{
   color: inherit !important;
   text-decoration: none !important;
 }
+th{
+  background-color: #324148 !important;
+  color: white !important;
+}
+
 
 .row{
   margin: 0 !important;
