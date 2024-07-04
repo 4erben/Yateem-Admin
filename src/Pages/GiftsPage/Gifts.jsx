@@ -36,21 +36,19 @@ export default function GiftsPage() {
   return (
     <Container className=''>
         <div className='card py-4'>
-
-            
             <Row className='px-4'>
-                <Col lg={6}>
+                <Col lg={6} className='px-0'>
                     <h4>الاهداءات الحالية</h4>
                 </Col>
                 <Col lg={6} className='row'>
                     <Col lg={6}>
-                        <button className='btn btn-primary w-100' onClick={handleAddGift}> 
+                        <button className='btn btn-primary mx-2 w-100 my-2' onClick={handleAddGift}> 
                             <HiDocumentAdd />
                             <span>اضافة اهداء</span>
                         </button>
                     </Col>
                     <Col lg={6}>
-                        <button className='btn btn-dark mx-2 w-100'>فلتر نتائج البحث <FaFilter /></button>
+                        <button className='btn btn-dark mx-2 w-100 my-2'>فلتر نتائج البحث <FaFilter /></button>
                     </Col>
                 </Col>
                 
@@ -76,9 +74,9 @@ export default function GiftsPage() {
             </Row>
             <hr/>
             <Row className='tblTransfers'>
-                <table className="table  text-center">
-                    <thead>
-                    <tr>
+                <table className="table   text-center">
+                    <thead className='mx-0'>
+                    <tr className=''>
                         <th>صورة الاهداء</th>
                         <th>كود الاهداء</th>
                         <th>اسم الاهداء</th>

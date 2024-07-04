@@ -42,6 +42,9 @@ th{
   margin: 0 !important;
 }
 /* Utility Classes */
+.tblTransfers{
+  overflow-x: auto !important;
+}
 .bg-c-dark{
   background-color: var(--dark-color) !important;
 }

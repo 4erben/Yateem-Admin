@@ -1,3 +1,8 @@
-.tblTransfers{
-    overflow-x: scroll;
-}
+/* .tblTransfers{
+    overflow-x: auto;
+    table{
+        th{
+            text-wrap: nowrap;
+        }
+    }
+} */

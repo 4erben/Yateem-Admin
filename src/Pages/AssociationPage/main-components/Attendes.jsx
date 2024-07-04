@@ -15,18 +15,18 @@ export default function Attendes() {
             <Col className='col-11'>
               <div>
                 <span className='ms-3'>مدير الموقع: </span>
-                <span>جمعان احمد الزهراني</span>
+                <span>علي احمد الدوسري</span>
               </div>
               <div className='quote-footer py-1'>
               <BsDashLg /> 
               <p className='mx-2'>
                 <IoPhonePortraitSharp /> 
-                الجوال: 0566661163   
+                الجوال: 9665414963407   
               </p>
               <p>
                 <IoPhonePortraitSharp /> 
-                جوال الاشعارات :
-               <span><GoMention />  wefaqalmjd.2019@gmail.com</span> 
+                بريد الاشعارات :
+               <span><GoMention /> Ali_ahmed2030@gami.com@gmail.com</span> 
               </p>
               </div>
             </Col>
