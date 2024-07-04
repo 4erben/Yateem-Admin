@@ -44,6 +44,16 @@ import ListDonationDetails from './Pages/DonationsPage/ListDetails.jsx';
 import FinancialReport from './Pages/DonationsPage/FinancialReport.jsx';
 import Deductions from './Pages/DonationsPage/Deductions.jsx';
 import RequiredReports from './Pages/DonationsPage/RequiredReports.jsx';
+import GiftsPage from './Pages/GiftsPage/Gifts.jsx';
+import AddGift from './Pages/GiftsPage/AddGift.jsx';
+import Cart from './Pages/CartPage/Cart.jsx';
+import Donors from './Pages/DonorsPage/Donors.jsx';
+import Comments from './Pages/CommentsPage/Comments.jsx';
+import Ratings from './Pages/CommentsPage/Ratings.jsx';
+import AffUsers from './Pages/AffiliatePages/AffUsers.jsx';
+import Affiliate from './Pages/AffiliatePages/Affiliate.jsx';
+import Archives from './Pages/AffiliatePages/Archives.jsx';
+import Settings from './Pages/SettingPage/Settings.jsx';
 
 
 function App() {
@@ -141,6 +151,17 @@ function App() {
               <Route path='/donations/financialReport'  element={ <FinancialReport/> }/>
               <Route path='/donations/billsDeduction'  element={ <Deductions/> }/>
               <Route path='/donations/requiredReports'  element={ <RequiredReports/> }/>
+              <Route path='/gifts'  element={ <GiftsPage/> }/>
+              <Route path='/gifts/add'  element={ <AddGift/> }/>
+              <Route path='/donations/cart'  element={ <Cart/> }/>
+              <Route path='/donors'  element={ <Donors/> }/>
+              <Route path='/comments'  element={ <Comments/> }/>
+              <Route path='/comments/ratings'  element={ <Ratings/> }/>
+              <Route path='/affiliate/'  element={ <Affiliate/> }/>
+              <Route path='/affiliate/affiliateUsers'  element={ <AffUsers/> }/>
+              <Route path='/affiliate/archives'  element={ <Archives/> }/>
+              <Route path='/settings'  element={ <Settings/> }/>
+
             
               <Route path='/projects/add' element={<AddProject />} />
               <Route path='/projects' element={<AllProjects />} />

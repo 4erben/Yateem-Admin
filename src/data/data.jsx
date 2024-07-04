@@ -1,6 +1,6 @@
 import { CgWebsite } from "react-icons/cg";
 import { IoIosLink, IoMdHome, IoMdLink } from "react-icons/io";
-import { FaArrowRight, FaCommentSms, FaDollarSign, FaEnvelope, FaFlagCheckered, FaFolder, FaQuestion, FaRegEnvelope, FaViacoin } from "react-icons/fa6";
+import { FaArrowRight, FaCommentSms, FaDollarSign, FaEnvelope, FaFlagCheckered, FaFolder, FaQuestion, FaRegEnvelope, FaTableCells, FaUsers, FaViacoin } from "react-icons/fa6";
 import { FaCommentAlt, FaExpandArrowsAlt, FaRegEdit, FaRegQuestionCircle } from "react-icons/fa";
 import { LuShrink } from "react-icons/lu";
 import { GrArticle, GrGallery } from "react-icons/gr";
@@ -12,9 +12,10 @@ import { CiHeart } from "react-icons/ci";
 import { BiSolidCoinStack } from "react-icons/bi";
 import { BsDatabaseFillDown, BsFillPeopleFill } from "react-icons/bs";
 import { LiaComments } from "react-icons/lia";
-import { IoPhonePortraitSharp, IoQrCodeOutline, IoSettings } from 'react-icons/io5';
+import { IoDocuments, IoPhonePortraitSharp, IoQrCodeOutline, IoSettings } from 'react-icons/io5';
 import { RxIconjarLogo } from "react-icons/rx";
 import { ImCoinPound } from "react-icons/im";
+import { RiArrowUpSLine } from "react-icons/ri";
 
 const websiteMenu = [
     {
@@ -76,7 +77,7 @@ const websiteMenu = [
 const projectsMenu = [
     {
         title: "المشروعات الحالية",
-        icon :  <HiDocumentRemove />,
+        icon :  <IoDocuments />,
         link : "/projects"
     },
     {
@@ -89,18 +90,13 @@ const projectsMenu = [
 const giftsMenu = [
     {
         title: "الاهداءات الحالية",
-        icon: <HiDocumentAdd />,
-        link : "/gifts/add"
+        icon: <IoDocuments />,
+        link : "/gifts"
     },
     {
         title: "اضافة اهداء",
-        icon :  <HiDocumentRemove />,
-        link : "/gifts/remove"
-    },
-    {
-        title: "تعديل اهداء",
-        icon :  <MdEditDocument />,
-        link : "/gifts/edit"
+        icon :  <HiDocumentAdd />,
+        link : "/gifts/add"
     }
 ]
 const donationsMenu = [
@@ -140,7 +136,7 @@ const transfersMenu = [
 const donorsMenu = [
     {
         title: "المتبرعين الحاليين",
-        icon: <BsFillPeopleFill/>,
+        icon: <FaUsers/>,
         link : "/donors"
     },
 ]
@@ -148,8 +144,13 @@ const donorsMenu = [
 const commentsMenu = [
     {
         title: "التعليقات",
-        icon: <LiaComments />,
+        icon: <FaTableCells />,
         link : "/comments"
+    },
+    {
+        title: "التقييمات",
+        icon: <RiArrowUpSLine />,
+        link : "/comments/ratings"
     },
 ]
 
@@ -191,14 +192,14 @@ const reqMenu = [
 ]
 const adsMenu = [
     {
-        title: "الروابط الحالية",
-        icon: <IoMdLink />,
-        link : "/affiliate"
-    },
-    {
         title: "المنسقين",
         icon: <BsFillPeopleFill />,
         link : "/affiliate/affiliateUsers"
+    },
+    {
+        title: "الروابط الحالية",
+        icon: <IoMdLink />,
+        link : "/affiliate"
     },
     {
         title: "الروابط  المؤرشفة",
