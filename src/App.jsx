@@ -64,7 +64,7 @@ function App() {
   const localUser = JSON.parse(localStorage.getItem("user"));
 
   useEffect(()=>{
-    document.title = location.state?.itemName;
+    document.title = location.state?.itemName || "الرئيسية";
   },[location])
   useEffect(()=>{
     
